@@ -1,0 +1,28 @@
+unit acVars;
+
+interface
+
+uses
+     JsonDataObjects,
+
+     //
+     Classes,Graphics;
+
+type
+     TPasteMode = (pmNone, pmNext, pmBefore, pmLast, pmPrevLast);
+
+var
+     //
+     gjoModules     : TJsonObject;      //可以添加的模块
+     gjoProject     : TJsonObject;      //当前工程
+
+     //
+     gsMainDir      : string;           //init path
+
+
+
+
+
+implementation
+
+end.

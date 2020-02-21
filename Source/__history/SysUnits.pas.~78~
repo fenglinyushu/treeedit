@@ -1,0 +1,80 @@
+unit SysUnits;
+
+interface
+
+uses
+     //
+     SysVars,
+     SysConsts,SysRecords, xmldom,
+     //
+     GDIPAPI,
+     JsonDataObjects,
+     //
+     XMLDoc,XMLIntf, Types,ComCtrls,
+     Math,Graphics,SysUtils,Dialogs,windows,Classes,ExtCtrls;
+
+
+function  ModeToImageIndex(Mode:Integer):Integer;
+function  InModes(Source:Integer;Ints:array of Integer):Boolean;
+function  ColorToGp(C:TColor):Integer;
+function  RTtoStr(RT:Integer):String;
+function  FoundNodeByID(xFile:TXMLDocument;ID:Integer):IXMLNode; //在XML节点中查找属性ID为指定值的节点
+function  GetFileFromDsp(sDsp:String):TStringDynArray;           //从VC的Dsp文件中得到工程的文件列表
+function  GetXMLNodeFromTreeNode(XML:TXMLDocument;Node:TTreeNode):IXMLNode;       //从树节点，得到相应的XML节点
+procedure SetNodeStatus(Node:TTreeNode;xnCur:IXMLNode);          //将树节点的开合状态信息写到XML节点中
+
+function WinExecAndWait32(FileName: string; Visibility: Integer): Longword;
+//得到节点的显示TEXT
+function  GetNodeText(Node:IXMLNode):string;
+
+function _M(ANode:TJsonObject):Integer;
+//
+function _X(ANode:TJsonObject):Integer;
+function _Y(ANode:TJsonObject):Integer;
+function _W(ANode:TJsonObject):Integer;
+function _H(ANode:TJsonObject):Integer;
+function _E(ANode:TJsonObject):Integer;
+//
+function _L(ANode:TJsonObject):Integer;    //左(含E)
+function _R(ANode:TJsonObject):Integer;    //右
+function _B(ANode:TJsonObject):Integer;    //底
+function _EW(ANode:TJsonObject):Integer;   //全宽(含E)
+function _EB(ANode:TJsonObject):Integer;   //底(不含最下面的下接线)
+function _EL(ANode:TJsonObject):Integer;   //左(不含E)
+
+
+implementation
+
+
+
+
+
+
+
+
+procedure SetNodeStatus(Node:TTreeNode;xnCur:IXMLNode);
+var
+     I    : Integer;
+begin
+     try
+          //
+          xnCur.Attributes['Expanded']  := Node.Expanded;
+          xnCur.AttributeNodes.Delete('X');
+          xnCur.AttributeNodes.Delete('Y');
+          xnCur.AttributeNodes.Delete('E');
+          xnCur.AttributeNodes.Delete('W');
+          xnCur.AttributeNodes.Delete('H');
+          for I:=0 to Min(Node.Count-1,xnCur.ChildNodes.Count-1) do begin
+               SetNodeStatus(Node.Item[I],xnCur.ChildNodes[I]);
+          end;
+     except
+          ShowMessageFmt('Error when SetNodeStatus! tnNode = %s, xnNode = %s',[Node.Text,xnCur.NodeName]);
+     end;
+end;
+
+
+
+
+
+
+end.

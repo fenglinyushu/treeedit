@@ -1,0 +1,25 @@
+program TreeEditor;
+
+uses
+  Forms,
+  Main in 'Main.pas' {MainForm},
+  NodeSearch in 'NodeSearch.pas' {Form_Search},
+  SysConsts in 'SysConsts.pas',
+  NodeEditConsts in 'NodeEditConsts.pas',
+  ACBaseUnits in 'ACBaseUnits.pas',
+  SysRecords in '..\WWChart\SysRecords.pas',
+  SysVars in 'SysVars.pas',
+  About in 'About.pas' {Form_About},
+  acVars in 'acVars.pas';
+
+{$R *.res}
+
+begin
+     Application.Initialize;
+
+     //
+     Application.CreateForm(TMainForm, MainForm);
+  Application.CreateForm(TForm_Search, Form_Search);
+  //
+     Application.Run;
+end.
