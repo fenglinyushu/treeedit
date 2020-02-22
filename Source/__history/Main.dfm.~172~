@@ -335,6 +335,7 @@ object MainForm: TMainForm
       Align = alClient
       BevelOuter = bvNone
       BorderStyle = bsNone
+      DragMode = dmAutomatic
       HideSelection = False
       Images = ImageList_TextModes
       Indent = 27

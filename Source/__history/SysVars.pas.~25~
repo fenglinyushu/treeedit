@@ -30,9 +30,6 @@ var
 
 
 
-     //
-     gbModified     : Boolean = False;  //文件是否已被修改
-
 
 
  

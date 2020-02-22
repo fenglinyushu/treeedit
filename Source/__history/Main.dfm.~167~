@@ -304,6 +304,7 @@ object MainForm: TMainForm
       item
         Width = 200
       end>
+    ExplicitTop = 520
   end
   object Panel_Left: TPanel
     Left = 0
@@ -315,6 +316,7 @@ object MainForm: TMainForm
     Color = 16777180
     ParentBackground = False
     TabOrder = 2
+    ExplicitHeight = 494
     object mxClickSplitter1: TmxClickSplitter
       Left = 0
       Top = 320
@@ -335,6 +337,7 @@ object MainForm: TMainForm
       Align = alClient
       BevelOuter = bvNone
       BorderStyle = bsNone
+      DragMode = dmAutomatic
       HideSelection = False
       Images = ImageList_TextModes
       Indent = 27
@@ -358,6 +361,7 @@ object MainForm: TMainForm
       Items.NodeData = {
         03010000001E0000000000000000000000FFFFFFFFFFFFFFFF00000000000000
         00000000000100}
+      ExplicitHeight = 268
     end
     object Panel_LeftBottom: TPanel
       Left = 0
@@ -376,6 +380,7 @@ object MainForm: TMainForm
       ParentColor = True
       ParentFont = False
       TabOrder = 1
+      ExplicitTop = 274
     end
   end
   object Panel_Client: TPanel
@@ -386,6 +391,9 @@ object MainForm: TMainForm
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 3
+    ExplicitLeft = 358
+    ExplicitTop = 32
+    ExplicitHeight = 494
     object SynEdit: TSynEdit
       Left = 0
       Top = 0
@@ -420,6 +428,9 @@ object MainForm: TMainForm
       ScrollBars = ssVertical
       TabWidth = 5
       FontSmoothing = fsmNone
+      ExplicitLeft = 290
+      ExplicitWidth = 360
+      ExplicitHeight = 488
       RemovedKeystrokes = <
         item
           Command = ecCopy
@@ -441,9 +452,9 @@ object MainForm: TMainForm
   object ImageList_ToolBar: TImageList
     ColorDepth = cd32Bit
     Left = 416
-    Top = 112
+    Top = 48
     Bitmap = {
-      494C010135003800400010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C0101350038003C0010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000040000000E0000000010020000000000000E0
       000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
@@ -2302,7 +2313,7 @@ object MainForm: TMainForm
     AutoHotkeys = maManual
     Images = ImageList_ToolBar
     Left = 416
-    Top = 56
+    Top = 168
     object MenuItem_File: TMenuItem
       Tag = 1
       Caption = '&File'
@@ -2392,7 +2403,7 @@ object MainForm: TMainForm
   object PopupMenu_TreeView: TPopupMenu
     OnPopup = PopupMenu_TreeViewPopup
     Left = 416
-    Top = 168
+    Top = 112
     object N5: TMenuItem
       Caption = '-'
     end
@@ -2417,7 +2428,6 @@ object MainForm: TMainForm
     end
     object PopMenu_Cut: TMenuItem
       Caption = 'Cut'
-      Visible = False
       OnClick = PopMenu_CutClick
     end
     object PopMenu_Paste: TMenuItem
@@ -2447,7 +2457,7 @@ object MainForm: TMainForm
     Left = 568
     Top = 168
     Bitmap = {
-      494C010110003000700014000C00FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C0101100030006C0014000C00FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000500000003C0000000100200000000000004B
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

@@ -335,6 +335,7 @@ object MainForm: TMainForm
       Align = alClient
       BevelOuter = bvNone
       BorderStyle = bsNone
+      DragMode = dmAutomatic
       HideSelection = False
       Images = ImageList_TextModes
       Indent = 27
@@ -2417,7 +2418,6 @@ object MainForm: TMainForm
     end
     object PopMenu_Cut: TMenuItem
       Caption = 'Cut'
-      Visible = False
       OnClick = PopMenu_CutClick
     end
     object PopMenu_Paste: TMenuItem

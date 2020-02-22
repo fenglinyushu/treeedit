@@ -1235,9 +1235,6 @@ var
      function _GetB(AMode:String):Boolean;
      begin
           Result    := (AMode<>__AsFixedChild)and(AMode<>__AsOptionalChild) and (sMode<>__AsFixedChild)and(sMode<>__AsOptionalChild);
-          if (sMode = __AsOptionalChild)and(AMode = __AsOptionalChild) then begin
-               Result    := True;
-          end;
      end;
 begin
      if ANode = nil then begin
@@ -1276,20 +1273,20 @@ begin
                joMdlNext := teFindModule(joNext.S['name']);
                //
                sModeNext := joMdlNext.S['mode'];
-               ToolButton_Down.Enabled  := _GetB(sModeNext);
+               ToolButton_Down.Enabled  := (sModeNext<>__AsFixedChild)and(sMode<>__AsOptionalChild);
           end else begin
                //
                joNext    := teTreeToJson(tnNext);
                joMdlNext := teFindModule(joNext.S['name']);
                //
                sModeNext := joMdlNext.S['mode'];
-               ToolButton_Down.Enabled  := _GetB(sModeNext);
+               ToolButton_Down.Enabled  := (sModeNext<>__AsFixedChild)and(sMode<>__AsOptionalChild);
                //
                joPrev    := teTreeToJson(tnPrev);
                joMdlPrev := teFindModule(joPrev.S['name']);
                //
                sModePrev := joMdlPrev.S['mode'];
-               ToolButton_Up.Enabled    := _GetB(sModePrev);
+               ToolButton_Up.Enabled    := (sModePrev<>__AsFixedChild)and(sMode<>__AsOptionalChild);
           end;
      end;
 

@@ -1234,10 +1234,10 @@ var
      //
      function _GetB(AMode:String):Boolean;
      begin
-          Result    := (AMode<>__AsFixedChild)and(AMode<>__AsOptionalChild) and (sMode<>__AsFixedChild)and(sMode<>__AsOptionalChild);
-          if (sMode = __AsOptionalChild)and(AMode = __AsOptionalChild) then begin
-               Result    := True;
-          end;
+          Result    := True;
+          if (AMode = __AsOptionalChild ) or (sMode = __AsOptionalChild) then begin
+               Result    := False;
+          end (AMode<>__AsFixedChild)and(AMode<>__AsOptionalChild) and (sMode<>__AsFixedChild)and(sMode<>__AsOptionalChild);
      end;
 begin
      if ANode = nil then begin

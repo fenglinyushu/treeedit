@@ -220,16 +220,9 @@ begin
           if (sModeSrc = __AsFixedChild) or (sModeSrc = __AsOptionalChild) then begin
                Result    := amNone;
           end else begin
-               if teInModules(sNameSrc,jaAlwChd) then begin
+               if teInModules(sNameSrc,jaAlwSib) then begin
                     if not teInModules(sNameSrc,jaAlwSib) then begin
                          Result    := amLastChild;
-                         Exit;
-                    end;
-               end;
-               if teInModules(sNameSrc,jaAlwSib) then begin
-                    if not teInModules(sNameSrc,jaAlwChd) then begin
-                         Result    := amNextSibling;
-                         Exit;
                     end;
                end;
                if bCtrl then begin

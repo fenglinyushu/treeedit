@@ -223,7 +223,6 @@ begin
                if teInModules(sNameSrc,jaAlwChd) then begin
                     if not teInModules(sNameSrc,jaAlwSib) then begin
                          Result    := amLastChild;
-                         Exit;
                     end;
                end;
                if teInModules(sNameSrc,jaAlwSib) then begin

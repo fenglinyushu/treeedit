@@ -210,6 +210,8 @@ begin
      sNameSrc  := joSource.S['name'];
      sNameDest := joDest.S['name'];
 
+     //先根据allowsibling 和 allowchild 再进行判断
+
 
      //
      //设置默认返回值 default result
@@ -220,18 +222,6 @@ begin
           if (sModeSrc = __AsFixedChild) or (sModeSrc = __AsOptionalChild) then begin
                Result    := amNone;
           end else begin
-               if teInModules(sNameSrc,jaAlwChd) then begin
-                    if not teInModules(sNameSrc,jaAlwSib) then begin
-                         Result    := amLastChild;
-                         Exit;
-                    end;
-               end;
-               if teInModules(sNameSrc,jaAlwSib) then begin
-                    if not teInModules(sNameSrc,jaAlwChd) then begin
-                         Result    := amNextSibling;
-                         Exit;
-                    end;
-               end;
                if bCtrl then begin
                     Result    := amNextSibling;
                end else begin
