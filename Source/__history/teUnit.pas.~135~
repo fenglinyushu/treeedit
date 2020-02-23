@@ -88,8 +88,8 @@ end;
 function  teColorToArray(AColor:TColor):String;    //
 begin
      Result    := '['
-               +IntToStr(GetRValue(ColorToRGB(AColor)))+','     //R
-               +IntToStr(GetGValue(ColorToRGB(AColor)))+','     //G
+               +IntToStr(GetRValue(ColorToRGB(AColor)))     //R
+               +IntToStr(GetGValue(ColorToRGB(AColor)))     //G
                +IntToStr(GetBValue(ColorToRGB(AColor)))
                +']';     //B
 end;

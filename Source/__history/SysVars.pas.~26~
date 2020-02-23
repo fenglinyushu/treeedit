@@ -22,7 +22,7 @@ uses
 var
      //
      gsMainDir      : string;           //init path 系统的初始运行目录
-     gsProjectName  : string = '';      //save file
+     gsFileName     : string = '';      //save file
 
      //
      gjoModules     : TJsonObject;      //modules for add

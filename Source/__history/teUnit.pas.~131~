@@ -47,49 +47,35 @@ var
      joFont    : TJsonObject;
 begin
      joFont    := TJsonObject.Create;
-     joFont.S['name']    := AFont.Name;
-     joFont.I['size']    := AFont.Size;
-     joFont.I['b']       := Integer(fsBold in AFont.Style);
+     joFont.S['name']         := AFont.Name;
+     joFont.I['size']         := AFont.Size;
+     joFont.I['b']         := Integer(fsBold in AFont.Style);
      joFont.I['i']       := Integer(fsItalic in AFont.Style);
-     joFont.I['u']       := Integer(fsUnderline in AFont.Style);
-     joFont.I['s']       := Integer(fsStrikeOut in AFont.Style);
+     joFont.I['u']    := Integer(fsUnderline in AFont.Style);
+     joFont.I['s']    := Integer(fsStrikeOut in AFont.Style);
      Result := joFont.ToJSON;
 end;
 
 function  teJsonToFont(AFont:TFont;AJson:TJsonObject):Integer;
 begin
      Result    := 0;
-     //
-     if AJson = nil then begin
-          Exit;
-     end;
-
-     if AJson.Contains('name') then begin
-          AFont.Name     := AJson.S['name'];
-     end;
-     if AJson.Contains('size') then begin
-          AFont.Size     := AJson.I['size'];
-     end;
+     AFont.Name     := AJson.S['name'];
+     AFont.Size     := AJson.I['size'];
      AFont.Style    := [];
      if AJson.I['b'] = 1 then begin
           AFont.Style    := AFont.Style + [fsBold];
      end;
-     if AJson.I['i'] = 1 then begin
-          AFont.Style    := AFont.Style + [fsItalic];
-     end;
-     if AJson.I['u'] = 1 then begin
-          AFont.Style    := AFont.Style + [fsUnderline];
-     end;
-     if AJson.I['s'] = 1 then begin
-          AFont.Style    := AFont.Style + [fsStrikeOut];
-     end;
+     Integer(fsBold in AFont.Style) := AJson.I['b'];
+     Integer(fsItalic in AFont.Style) := AJson.I['i'];
+     Integer(fsUnderline in AFont.Style) := AJson.I['u'];
+     Integer(fsStrikeOut in AFont.Style) := AJson.I['s'];
 
 end;
 function  teColorToArray(AColor:TColor):String;    //
 begin
      Result    := '['
-               +IntToStr(GetRValue(ColorToRGB(AColor)))+','     //R
-               +IntToStr(GetGValue(ColorToRGB(AColor)))+','     //G
+               +IntToStr(GetRValue(ColorToRGB(AColor)))     //R
+               +IntToStr(GetGValue(ColorToRGB(AColor)))     //G
                +IntToStr(GetBValue(ColorToRGB(AColor)))
                +']';     //B
 end;

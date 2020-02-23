@@ -234,7 +234,6 @@ var
      oComboBox : TComboBox;
      oColorBox : TColorBox;
      oSpeedBtn : TSpeedButton;
-     oFloatSE  : TFloatSpinEdit;
      //
      bFoundSrc : Boolean;     //found source property
 begin
@@ -332,12 +331,6 @@ begin
                oSpeedBtn.Caption   := 'Font';
                teJsonToFont(oSpeedBtn.Font,ANode.O[joProp.S['name']]);
                oSpeedBtn.OnClick   := PropertyChange;
-          end else if joProp.S['type'] = 'float' then begin
-               oFloatSE           := TFloatSpinEdit.Create(oPanel);
-               oFloatSE.Parent    := oPanel;
-               oFloatSE.Align     := alClient;
-               oFloatSE.Value     := ANode.D[joProp.S['name']];
-               oFloatSE.OnChange  := PropertyChange;
           end;
      end;
 
@@ -636,12 +629,6 @@ procedure TMainForm.PopItem_ModuleClick(Sender: TObject);
                          A[joProp.S['name']] := joProp.A['default'];
                     end else if joProp.S['type'] = 'color' then begin
                          O[joProp.S['name']] := TJsonObject.Create;
-                         O[joProp.S['name']].FromUtf8JSON(joProp.O['default'].ToUtf8JSON);
-                    end else if joProp.S['type'] = 'font' then begin
-                         O[joProp.S['name']] := TJsonObject.Create;
-                         O[joProp.S['name']].FromUtf8JSON(joProp.O['default'].ToUtf8JSON);
-                    end else if joProp.S['type'] = 'float' then begin
-                         D[joProp.S['name']] := joProp.D['default'];
                     end;
 
                     //get text of new node
@@ -1238,7 +1225,6 @@ var
      oComboBox : TComboBox;
      oColorBox : TColorBox;
      oSpeedBtn : TSpeedButton;
-     oFloatSE  : TFloatSpinEdit;
 begin
      //get current selected treenode
      tnNode    := TreeView.Selected;

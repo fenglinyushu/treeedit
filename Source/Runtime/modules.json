@@ -20,7 +20,7 @@
 		{
 			"name":"function",
 			"mode":"sibling and child",
-			"allowsibling":["function","code","if","for","while","try","break","continue"],
+			"allowsibling":["function","code","if","for","while","try"],
 			"allowchild":["code","if","for","while","try"],
 			"menu":["code","if","for","while","try"],
 			"parent":["root","class"],
@@ -38,8 +38,22 @@
 					"default":"newfunc(param)"
 				},
 				{
+					"name":"value",
+					"type":"float",
+					"default":0.1234
+				},
+				{
+					"name":"bgcolor",
+					"type":"color",
+					"default":[0,0,255]
+				},
+				{
 					"name":"comment",
 					"type":"string"
+				},
+				{
+					"name":"forefont",
+					"type":"font"
 				},
 				{
 					"name":"disabled",

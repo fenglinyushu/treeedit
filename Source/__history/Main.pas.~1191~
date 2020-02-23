@@ -639,7 +639,6 @@ procedure TMainForm.PopItem_ModuleClick(Sender: TObject);
                          O[joProp.S['name']].FromUtf8JSON(joProp.O['default'].ToUtf8JSON);
                     end else if joProp.S['type'] = 'font' then begin
                          O[joProp.S['name']] := TJsonObject.Create;
-                         O[joProp.S['name']].FromUtf8JSON(joProp.O['default'].ToUtf8JSON);
                     end else if joProp.S['type'] = 'float' then begin
                          D[joProp.S['name']] := joProp.D['default'];
                     end;
