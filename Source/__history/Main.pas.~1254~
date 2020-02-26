@@ -72,10 +72,14 @@ type
     TreeView: TTreeView;
     SaveDialog: TSaveDialog;
     PopMenu_Cut: TMenuItem;
+    N4: TMenuItem;
+    PopMenu_SetRoot: TMenuItem;
     Cut1: TMenuItem;
     mxClickSplitter1: TmxClickSplitter;
     mxClickSplitter_Left: TmxClickSplitter;
     Panel_LeftBottom: TPanel;
+    N5: TMenuItem;
+    PopMenu_tkinterwindow: TMenuItem;
     Panel_Client: TPanel;
     SynJSONSyn: TSynJSONSyn;
     FontDialog: TFontDialog;

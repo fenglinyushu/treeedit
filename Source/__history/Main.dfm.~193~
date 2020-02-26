@@ -312,7 +312,6 @@ object MainForm: TMainForm
     Height = 546
     Align = alLeft
     BevelOuter = bvNone
-    Color = 16777180
     ParentBackground = False
     TabOrder = 2
     object mxClickSplitter1: TmxClickSplitter
@@ -351,8 +350,6 @@ object MainForm: TMainForm
       ToolTips = False
       OnChange = TreeViewChange
       OnClick = TreeViewClick
-      OnCustomDrawItem = TreeViewCustomDrawItem
-      OnDragDrop = TreeViewDragDrop
       OnDragOver = TreeViewDragOver
       OnMouseDown = TreeViewMouseDown
       Items.NodeData = {
@@ -376,13 +373,6 @@ object MainForm: TMainForm
       ParentColor = True
       ParentFont = False
       TabOrder = 1
-      object ColorBox1: TColorBox
-        Left = 104
-        Top = 64
-        Width = 145
-        Height = 22
-        TabOrder = 0
-      end
     end
   end
   object Panel_Client: TPanel
@@ -450,7 +440,7 @@ object MainForm: TMainForm
     Left = 416
     Top = 112
     Bitmap = {
-      494C010135003800400010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010135003800500010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000040000000E0000000010020000000000000E0
       000000000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
@@ -2425,7 +2415,6 @@ object MainForm: TMainForm
     object PopMenu_Cut: TMenuItem
       Caption = 'Cut'
       Visible = False
-      OnClick = PopMenu_CutClick
     end
     object PopMenu_Paste: TMenuItem
       Tag = 21
@@ -2454,7 +2443,7 @@ object MainForm: TMainForm
     Left = 568
     Top = 168
     Bitmap = {
-      494C010110003000700014000C00FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010110003000800014000C00FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000500000003C0000000100200000000000004B
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -3090,10 +3079,13 @@ object MainForm: TMainForm
     Left = 414
     Top = 226
   end
-  object ColorDialog: TColorDialog
-    CustomColors.Strings = (
-      'clBlue')
-    Left = 566
-    Top = 226
+  object FontDialog: TFontDialog
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    Left = 414
+    Top = 282
   end
 end

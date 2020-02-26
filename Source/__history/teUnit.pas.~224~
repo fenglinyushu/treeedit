@@ -8,9 +8,8 @@ uses
 
      //
      JsonDataObjects,
-
      //
-     //SynEdit, SynEditHighlighter,SynEditCodeFolding, SynHighlighterJSON,
+     SynEdit, SynEditHighlighter,SynEditCodeFolding, SynHighlighterJSON,
 
      //
      Windows,
@@ -18,13 +17,7 @@ uses
      Graphics, Vcl.ExtCtrls, System.Classes, Vcl.StdCtrls, Vcl.Samples.Spin, Vcl.Buttons, FloatSpinEdit;
 
 type
-     TTEAddMode = (
-          amNone,
-          amNextSibling,      //移动或新增到当前节点的下一兄弟节点
-          amOptionalSibling,  //如果当前节点为第一子固定节点, 则位置为下一个;如果当前为最后固定节点,则为倒数第二个
-          amLastChild,        //移动或新增到当前节点的最后子节点
-          amPrevLastChild     //移动或新增到当前节点的非最后子节点
-          );
+     TTEAddMode = (amNone, amNextSibling, amOptionalSibling, amLastChild, amPrevLastChild);
 type
      TEventHandlers = class { 建一个虚拟类}
           procedure PropertyChange(Sender: TObject);
@@ -48,9 +41,9 @@ function  teFindModule(AName:string):TJsonObject;                               
 function  teGetAddMode(ASource,ADest: String): TTEAddMode;                      //Get the Add mode
 procedure teJsonToTree(TV:TTreeView);                                           //create tree from json
 procedure teAddChild(TV:TTreeView;ATNode:TTreeNode;AJNode:TJsonObject);         //
-function  teColorToArray(AColor:TColor):TJsonArray;    //
+function  teColorToArray(AColor:TColor):String;    //
 function  teArrayToColor(AArray:TJsonArray):TColor;
-function  teFontToJson(AFont:TFont):TJsonObject;
+function  teFontToJson(AFont:TFont):String;
 function  teJsonToFont(AFont:TFont;AJson:TJsonObject):Integer;
 procedure teSaveNodeProperty(ATV:TTreeView;APanel:TPanel);
 procedure teShowNodeProperty(ANode: TJsonObject;ATV:TTreeView;APanel:TPanel);
@@ -61,24 +54,13 @@ procedure teAddModule(ANode:TTreeNode;AIndex:Integer);
 
 
 var
-     EvHandler : TEventHandlers;
-
+     EvHandler:TEventHandlers;
 
 
 implementation
 
 uses
      Main;
-
-function  teCanMoveTo(ASource,ADest:TJsonObject):TTEAddMode;                    //是否可以移动Source到ADest
-var
-     joSource  : TJsonObject;
-     joDest    : TJsonObject;
-     joMdlSrc  : TJsonObject;
-     joMdlDest : TJsonObject;
-begin
-
-end;
 
 procedure teAddModule(ANode:TTreeNode;AIndex:Integer);
      procedure _AddNode(AtnParent:TTreeNode;AIndex:Integer;AjoModule:TJsonObject);
@@ -119,8 +101,6 @@ procedure teAddModule(ANode:TTreeNode;AIndex:Integer);
                          S[joProp.S['name']] := joProp.S['default'];
                     end else if joProp.S['type'] = 'source' then begin
                          S[joProp.S['name']] := joProp.S['default'];
-                    end else if joProp.S['type'] = 'memo' then begin
-                         S[joProp.S['name']] := joProp.S['default'];
                     end else if joProp.S['type'] = 'integer' then begin
                          I[joProp.S['name']] := joProp.I['default'];
                     end else if joProp.S['type'] = 'boolean' then begin
@@ -128,8 +108,10 @@ procedure teAddModule(ANode:TTreeNode;AIndex:Integer);
                     end else if joProp.S['type'] = 'list' then begin
                          S[joProp.S['name']] := joProp.S['default'];
                     end else if joProp.S['type'] = 'color' then begin
-                         A[joProp.S['name']] := TJsonArray.Create;
-                         A[joProp.S['name']].FromUtf8JSON(joProp.A['default'].ToUtf8JSON);
+                         A[joProp.S['name']] := joProp.A['default'];
+                    end else if joProp.S['type'] = 'color' then begin
+                         O[joProp.S['name']] := TJsonObject.Create;
+                         O[joProp.S['name']].FromUtf8JSON(joProp.O['default'].ToUtf8JSON);
                     end else if joProp.S['type'] = 'font' then begin
                          O[joProp.S['name']] := TJsonObject.Create;
                          if joProp.Contains('default') then begin
@@ -360,62 +342,59 @@ var
           end;
      end;
 begin
-     try
-          if ANode = nil then begin
-               Exit;
-          end;
-
-          //
-          joNode    := teTreeToJson(ANode);
-          sName     := joNode.S['name'];
-          joMdlNode := teFindModule(sName);
-          sMode     := joMdlNode.S['mode'];
-
-          //
-          tnNext    := ANode.getNextSibling;
-          tnPrev    := ANode.getPrevSibling;
-
-          //
-          if (tnNext = nil) then begin
-               if (tnPrev = nil) then begin
-                    ADown.Enabled  := False;
-                    AUp.Enabled    := False;
-               end else begin
-                    ADown.Enabled  := False;
-                    //
-                    joPrev    := teTreeToJson(tnPrev);
-                    joMdlPrev := teFindModule(joPrev.S['name']);
-                    //
-                    sModePrev := joMdlPrev.S['mode'];
-                    AUp.Enabled    := _GetB(sModePrev);
-               end;
-          end else begin
-               if (tnPrev = nil) then begin
-                    AUp.Enabled    := False;
-                    //
-                    joNext    := teTreeToJson(tnNext);
-                    joMdlNext := teFindModule(joNext.S['name']);
-                    //
-                    sModeNext := joMdlNext.S['mode'];
-                    ADown.Enabled  := _GetB(sModeNext);
-               end else begin
-                    //
-                    joNext    := teTreeToJson(tnNext);
-                    joMdlNext := teFindModule(joNext.S['name']);
-                    //
-                    sModeNext := joMdlNext.S['mode'];
-                    ADown.Enabled  := _GetB(sModeNext);
-                    //
-                    joPrev    := teTreeToJson(tnPrev);
-                    joMdlPrev := teFindModule(joPrev.S['name']);
-                    //
-                    sModePrev := joMdlPrev.S['mode'];
-                    AUp.Enabled    := _GetB(sModePrev);
-               end;
-          end;
-     except
-          ShowMessage('Error when teSetUpDownEnable!');
+     if ANode = nil then begin
+          Exit;
      end;
+
+     //
+     joNode    := teTreeToJson(ANode);
+     sName     := joNode.S['name'];
+     joMdlNode := teFindModule(sName);
+     sMode     := joMdlNode.S['mode'];
+
+     //
+     tnNext    := ANode.getNextSibling;
+     tnPrev    := ANode.getPrevSibling;
+
+     //
+     if (tnNext = nil) then begin
+          if (tnPrev = nil) then begin
+               ADown.Enabled  := False;
+               AUp.Enabled    := False;
+          end else begin
+               ADown.Enabled  := False;
+               //
+               joPrev    := teTreeToJson(tnPrev);
+               joMdlPrev := teFindModule(joPrev.S['name']);
+               //
+               sModePrev := joMdlPrev.S['mode'];
+               AUp.Enabled    := _GetB(sModePrev);
+          end;
+     end else begin
+          if (tnPrev = nil) then begin
+               AUp.Enabled    := False;
+               //
+               joNext    := teTreeToJson(tnNext);
+               joMdlNext := teFindModule(joNext.S['name']);
+               //
+               sModeNext := joMdlNext.S['mode'];
+               ADown.Enabled  := _GetB(sModeNext);
+          end else begin
+               //
+               joNext    := teTreeToJson(tnNext);
+               joMdlNext := teFindModule(joNext.S['name']);
+               //
+               sModeNext := joMdlNext.S['mode'];
+               ADown.Enabled  := _GetB(sModeNext);
+               //
+               joPrev    := teTreeToJson(tnPrev);
+               joMdlPrev := teFindModule(joPrev.S['name']);
+               //
+               sModePrev := joMdlPrev.S['mode'];
+               AUp.Enabled    := _GetB(sModePrev);
+          end;
+     end;
+
 end;
 
 procedure teShowNodeProperty(ANode: TJsonObject;ATV:TTreeView;APanel:TPanel);
@@ -431,7 +410,7 @@ var
      oLabel    : TLabel;
      oSpinEdit : TSpinEdit;
      oEdit     : TEdit;
-     oMemo     : TMemo;
+     oSynEdit  : TSynEdit;
      oCheckBox : TCheckBox;
      oComboBox : TComboBox;
      oColorBox : TColorBox;
@@ -484,14 +463,6 @@ begin
                oEdit.Align    := alClient;
                oEdit.Text     := ANode.S[joProp.S['name']];
                oEdit.OnChange := EvHandler.PropertyChange;
-          end else if joProp.S['type'] = 'memo' then begin
-               oMemo          := TMemo.Create(oPanel);
-               oMemo.Parent   := oPanel;
-               oMemo.Align    := alClient;
-               oMemo.Text     := ANode.S[joProp.S['name']];
-               oMemo.OnChange := EvHandler.PropertyChange;
-               //
-               oPanel.Height  := 80;
           end else if joProp.S['type'] = 'integer' then begin
                oSpinEdit           := TSpinEdit.Create(oPanel);
                oSpinEdit.Parent    := oPanel;
@@ -499,11 +470,12 @@ begin
                oSpinEdit.Value     := ANode.I[joProp.S['name']];
                oSpinEdit.OnChange  := EvHandler.PropertyChange;
           end else if joProp.S['type'] = 'source' then begin
-               oMemo       := TMemo.Create(oPanel);
-               oMemo.Parent:= oPanel;
-               oMemo.Align := alClient;
-               oMemo.Text  := ANode.S[joProp.S['name']];
-               oMemo.OnChange   := EvHandler.PropertyChange;
+               oSynEdit       := TSynEdit.Create(oPanel);
+               oSynEdit.Parent:= oPanel;
+               oSynEdit.Align := alClient;
+               oSynEdit.Text  := ANode.S[joProp.S['name']];
+               oSynEdit.OnChange   := EvHandler.PropertyChange;
+               oSynEdit.Gutter.Visible  := False;
                //
                bFoundSrc := True;
                oPanel.Align   := alClient;
@@ -523,7 +495,7 @@ begin
                if joProp.B['fixed'] then begin
                     oComboBox.Style     := csDropDownList;
                end;
-               oComboBox.ItemIndex := oComboBox.Items.IndexOf(ANode.S[joProp.S['name']]);  //HERE! IndexOfName not work correct!
+               oComboBox.ItemIndex := oComboBox.Items.IndexOfName(ANode.S[joProp.S['name']]);
                oComboBox.OnChange  := EvHandler.PropertyChange;
           end else if joProp.S['type'] = 'color' then begin
                oColorBox           := TColorBox.Create(oPanel);
@@ -566,8 +538,8 @@ var
      //
      oPanel    : TPanel;
      oEdit     : TEdit;
-     oMemo     : TMemo;
      oSpinEdit : TSpinEdit;
+     oSynEdit  : TSynEdit;
      oCheckBox : TCheckBox;
      oComboBox : TComboBox;
      oColorBox : TColorBox;
@@ -597,11 +569,8 @@ begin
                oEdit     := TEdit(oPanel.Controls[1]);
                joNode.S[joProp.S['name']]    := oEdit.Text;
           end else if joProp.S['type'] = 'source' then begin
-               oMemo  := TMemo(oPanel.Controls[1]);
-               joNode.S[joProp.S['name']]    := oMemo.Text;
-          end else if joProp.S['type'] = 'memo' then begin
-               oMemo     := TMemo(oPanel.Controls[1]);
-               joNode.S[joProp.S['name']]    := oMemo.Text;
+               oSynEdit  := TSynEdit(oPanel.Controls[1]);
+               joNode.S[joProp.S['name']]    := oSynEdit.Text;
           end else if joProp.S['type'] = 'integer' then begin
                oSpinEdit     := TSpinEdit(oPanel.Controls[1]);
                joNode.I[joProp.S['name']]    := oSpinEdit.Value;
@@ -614,11 +583,12 @@ begin
           end else if joProp.S['type'] = 'color' then begin
                oColorBox := TColorBox(oPanel.Controls[1]);
                joNode.A[joProp.S['name']]    := TJsonArray.Create;
-               joNode.A[joProp.S['name']].FromUtf8JSON(teColorToArray(oColorBox.Selected).ToUtf8JSON(False));
+               joNode.A[joProp.S['name']].FromUtf8JSON(teColorToArray(oColorBox.Selected));
           end else if joProp.S['type'] = 'font' then begin
                oSpeedBtn := TSpeedButton(oPanel.Controls[1]);
                joNode.O[joProp.S['name']]    := TJsonObject.Create;
-               joNode.O[joProp.S['name']].FromUtf8JSON(teFontToJson(oSpeedBtn.Font).ToUtf8JSON(False));
+               sDebug    := teFontToJson(oSpeedBtn.Font);
+               //joNode.O[joProp.S['name']].FromJSON(sDebug);
           end else if joProp.S['type'] = 'float' then begin
                oFloatSE  := TFloatSpinEdit(oPanel.Controls[1]);
                joNode.F[joProp.S['name']]    := oFloatSE.Value;
@@ -633,17 +603,22 @@ begin
 end;
 
 
-function  teFontToJson(AFont:TFont):TJsonObject;
+function  teFontToJson(AFont:TFont):String;
+var
+     joFont    : TJsonObject;
 begin
-
-     Result    := TJsonObject.Create;
-     Result.S['name']    := AFont.Name;
-     Result.I['size']    := AFont.Size;
-     Result.I['b']       := Integer(fsBold in AFont.Style);
-     Result.I['i']       := Integer(fsItalic in AFont.Style);
-     Result.I['u']       := Integer(fsUnderline in AFont.Style);
-     Result.I['s']       := Integer(fsStrikeOut in AFont.Style);
-     //Result    := Format('{"name":"%s","size":%d}',[AFont.Name,AFont.Size]);
+{
+     joFont    := TJsonObject.Create;
+     joFont.S['name']    := AFont.Name;
+     joFont.I['size']    := AFont.Size;
+     joFont.I['b']       := Integer(fsBold in AFont.Style);
+     joFont.I['i']       := Integer(fsItalic in AFont.Style);
+     joFont.I['u']       := Integer(fsUnderline in AFont.Style);
+     joFont.I['s']       := Integer(fsStrikeOut in AFont.Style);
+     Result := joFont.ToString;
+     joFont.Destroy;
+}
+     Result    := Format('{"name":"%s","size":%d}',[AFont.Name,AFont.Size]);
 end;
 
 function  teJsonToFont(AFont:TFont;AJson:TJsonObject):Integer;
@@ -675,20 +650,13 @@ begin
      end;
 
 end;
-function  teColorToArray(AColor:TColor):TJsonArray;    //
+function  teColorToArray(AColor:TColor):String;    //
 begin
-     Result    := TJsonArray.Create;
-     Result.add(GetRValue(ColorToRGB(AColor)));
-     Result.add(GetGValue(ColorToRGB(AColor)));
-     Result.add(GetBValue(ColorToRGB(AColor)));
-
-{
      Result    := '['
                +IntToStr(GetRValue(ColorToRGB(AColor)))+','     //R
                +IntToStr(GetGValue(ColorToRGB(AColor)))+','     //G
                +IntToStr(GetBValue(ColorToRGB(AColor)))
                +']';     //B
-}
 end;
 
 function  teArrayToColor(AArray:TJsonArray):TColor;
@@ -761,31 +729,22 @@ end;
 
 function  teModuleNameToImageIndex(AName:string):Integer;
 const
-     miiFile        = 1;
-     miiFunction    = 2;
-     miiBlock       = 3;
-     miiCode        = 4;
-     miiSet         = 5;
-     miiIf          = 6;
-     miiTrue        = 7;
-     miiElif        = 8;
-     miiElse        = 9;
-     miiFor         = 10;
-     miiWhile       = 11;
-     miiBreak       = 12;
-     miiContinue    = 13;
-     miiTry         = 14;
-     miiExcept      = 15;
-     miiClass       = 16;
-     miiTk_Window   = 20;
-     miiTk_Label    = 21;
-     miiTk_Button   = 22;
-     miiTk_Entry    = 23;
-     miiTk_Check    = 24;
-     miiTk_Radio    = 25;
-     miiTk_Listbox  = 26;
-     miiTk_Text     = 27;
-     miiTk_Scale    = 28;
+     miiFile        = 0;
+     miiFunction    = 1;
+     miiBlock       = 2;
+     miiCode        = 3;
+     miiSet         = 4;
+     miiIf          = 5;
+     miiTrue        = 6;
+     miiElif        = 7;
+     miiElse        = 8;
+     miiFor         = 9;
+     miiWhile       = 10;
+     miiBreak       = 11;
+     miiContinue    = 12;
+     miiTry         = 13;
+     miiExcept      = 14;
+     miiClass       = 15;
 begin
      Result    := 0;
      if AName = 'file' then begin
@@ -824,24 +783,6 @@ begin
           Result    := miiContinue;
      end else if AName = 'class' then begin
           Result    := miiClass;
-     end else if AName = 'tk_window' then begin
-          Result    := miiTk_Window;
-     end else if AName = 'tk_label' then begin
-          Result    := miiTk_Label;
-     end else if AName = 'tk_button' then begin
-          Result    := miiTk_Button;
-     end else if AName = 'tk_entry' then begin
-          Result    := miiTk_Entry;
-     end else if AName = 'tk_check' then begin
-          Result    := miiTk_Check;
-     end else if AName = 'tk_radio' then begin
-          Result    := miiTk_Radio;
-     end else if AName = 'tk_listbox' then begin
-          Result    := miiTk_Listbox;
-     end else if AName = 'tk_text' then begin
-          Result    := miiTk_Text;
-     end else if AName = 'tk_scale' then begin
-          Result    := miiTk_Scale;
      end;
 end;
 
