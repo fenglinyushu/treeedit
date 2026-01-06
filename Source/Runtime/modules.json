@@ -1,716 +1,2031 @@
 {
-	"language":"python",
-	"author":"fenglinyushu",
-	"items":
-	[
-		{
-			"name":"root",
-			"mode":"only child",
-			"allowsibling":[],
-			"allowchild":["class","function","code","if","for","while","try","tk_window"],
-			"parent":["none"]
-		},
-		{
-			"name":"block",
-			"mode":"as fixed child",
-			"allowsibling":[],
-			"allowchild":["class","function","code","if","for","while","try","break","continue","tk_window"],
-			"parent":["none"]
-		},
-		{
-			"name":"function",
-			"mode":"sibling and child",
-			"allowsibling":["function","code","if","for","while","try","tk_window"],
-			"allowchild":["code","if","for","while","try","tk_window"],
-			"menu":["code","if","for","while","try"],
-			"parent":["root","class"],
-			"mode":["container"],
-			"property":
-			[
-				{
-					"name":"caption",
-					"type":"string",
-					"default":"newfunc(param)"
-				},
-				{
-					"name":"source",
-					"type":"string",
-					"default":"newfunc(param)"
-				},
-				{
-					"name":"comment",
-					"type":"string"
-				},
-				{
-					"name":"disabled",
-					"type":"boolean",
-					"default":false
-				}
-			]
-		},
-		{
-			"name":"class",
-			"mode":"sibling and child",
-			"allowsibling":["class","code","if","for","while","try","tk_window"],
-			"allowchild":["function","code","if","for","while","try","tk_window"],
-			"menu":["function","code","if","for","while","try"],
-			"parent":["root"],
-			"mode":["container"],
-			"child":[],
-			"property":
-			[
-				{
-					"name":"caption",
-					"type":"string",
-					"default":"classname"
-				},
-				{
-					"name":"source",
-					"type":"string",
-					"default":"classname"
-				},
-				{
-					"name":"comment",
-					"type":"string"
-				},
-				{
-					"name":"disabled",
-					"type":"boolean",
-					"default":false
-				}
-			]
-		},
-		{
-			"name":"code",
-			"mode":"no child",
-			"allowsibling":["class","function","code","if","for","while","try","break","continue","tk_window"],
-			"allowchild":[],
-			"child":[],
-			"property":
-			[
-				{
-					"name":"caption",
-					"type":"string"
-				},
-				{
-					"name":"source",
-					"type":"source",
-					"default":"print('hello,python!')"
-				},
-				{
-					"name":"comment",
-					"type":"string"
-				},
-				{
-					"name":"disabled",
-					"type":"boolean",
-					"default":false
-				}
-			]
-		},
-		{
-			"name":"if",
-			"mode":"optional child",
-			"child":["if_yes","if_else"],
-			"allowsibling":["class","function","code","if","for","while","try","break","continue","tk_window"],
-			"allowchild":["elif"],
-			"property":
-			[
-				{
-					"name":"caption",
-					"type":"string",
-					"default":"1 > 0"
-				},
-				{
-					"name":"source",
-					"type":"string",
-					"default":"1 > 0"
-				},
-				{
-					"name":"comment",
-					"type":"string"
-				},
-				{
-					"name":"disabled",
-					"type":"boolean",
-					"default":false
-				}
-			]
-		},
-		{
-			"name":"if_yes",
-			"mode":"as fixed child",
-			"allowsibling":["elif"],
-			"allowchild":["function","code","if","for","while","try","break","continue","tk_window"],
-			"parent":["if"],
-			"property":
-			[
-			]
-		},
-		{
-			"name":"if_else",
-			"mode":"as fixed child",
-			"allowsibling":["elif"],
-			"allowchild":["function","code","if","for","while","try","break","continue","tk_window"],
-			"parent":["if"],
-			"property":
-			[
-			]
-		},
-		{
-			"name":"for",
-			"mode":"fixed child",
-			"allowsibling":["class","function","code","if","for","while","try","break","continue","tk_window"],
-			"allowchild":[],
-			"child":["block"],
-			"property":
-			[
-				{
-					"name":"caption",
-					"type":"string",
-					"default":"i in range(0,3)"
-				},
-				{
-					"name":"source",
-					"type":"string",
-					"default":"i in range(0,3)"
-				},
-				{
-					"name":"comment",
-					"type":"string"
-				},
-				{
-					"name":"disabled",
-					"type":"boolean",
-					"default":false
-				}
-			]
-		},		
-		{
-			"name":"while",
-			"mode":"fixed child",
-			"allowsibling":["class","function","code","if","for","while","try","break","continue","tk_window"],
-			"allowchild":[],
-			"child":["block"],
-			"property":
-			[
-				{
-					"name":"caption",
-					"type":"string",
-					"default":"0 > 0"
-				},
-				{
-					"name":"source",
-					"type":"string",
-					"default":"0 > 0"
-				},
-				{
-					"name":"comment",
-					"type":"string"
-				},
-				{
-					"name":"disabled",
-					"type":"boolean",
-					"default":false
-				}
-			]
-		},		
-		{
-			"name":"try",
-			"mode":"optional child",
-			"allowsibling":["class","function","code","if","for","while","try","break","continue","tk_window"],
-			"allowchild":["try_except"],
-			"child":["try_body","try_except","try_else"],
-			"property":
-			[
-				{
-					"name":"caption",
-					"type":"string",
-					"default":""
-				},
-				{
-					"name":"comment",
-					"type":"string"
-				},
-				{
-					"name":"disabled",
-					"type":"boolean",
-					"default":false
-				}
-			]
-		},
-		{
-			"name":"elif",
-			"mode":"as optional child",
-			"allowsibling":["elif"],
-			"allowchild":["function","code","if","for","while","try","break","continue","tk_window"],
-			"parent":["if"],
-			"property":
-			[
-				{
-					"name":"caption",
-					"type":"string",
-					"default":""
-				},
-				{
-					"name":"source",
-					"type":"string",
-					"default":"1>0"
-				}
-			]
-		},
-		{
-			"name":"try_body",
-			"allowsibling":["try_except"],
-			"allowchild":["class","function","code","if","for","while","try","break","continue","tk_window"],
-			"mode":"as fixed child",
-			"parent":["try"],
-			"property":[]
-		},
-		{
-			"name":"try_else",
-			"mode":"as fixed child",
-			"allowsibling":["try_except"],
-			"allowchild":["class","function","code","if","for","while","try","break","continue","tk_window"],
-			"parent":["try"],
-			"property":[]
-		},
-		{
-			"name":"try_except",
-			"mode":"as optional child",
-			"allowsibling":["try_except"],
-			"allowchild":["class","function","code","if","for","while","try","break","continue","tk_window"],
-			"parent":["try"],
-			"property":
-			[
-				{
-					"name":"caption",
-					"type":"string",
-					"default":""
-				},
-				{
-					"name":"source",
-					"type":"string",
-					"default":"IOError"
-				}
-			]
-		},
-		{
-			"name":"-"
-		},
-		{
-			"name":"break",
-			"allowsibling":["code","if","for","while","try","continue","tk_window"],
-			"allowchild":[],
-			"menu":[],
-			"mode":"no child",
-			"child":[],
-			"property":[]
-		},
-		{
-			"name":"continue",
-			"allowsibling":["code","if","for","while","try","break","tk_window"],
-			"allowchild":[],
-			"mode":"no child",
-			"child":[],
-			"property":[]
-		},
-		{
-			"name":"-"
-		},
-		{
-			"name":"tk_window",
-			"mode":"sibling and child",
-			"allowsibling":["tk_window","class","function","code","if","for","while","try","break","continue"],
-			"allowchild":["tk_label","tk_button","tk_entry","tk_radio","tk_check","tk_listbox","tk_text","tk_scale"],
-			"parent":[],
-			"property":
-			[
-				{
-					"name":"caption",
-					"type":"string",
-					"default":"tkinter window"
-				},
-				{
-					"name":"compname",
-					"type":"string",
-					"default":"win"
-				},
-				{
-					"name":"left",
-					"type":"integer",
-					"default":100
-				},
-				{
-					"name":"top",
-					"type":"integer",
-					"default":100
-				},
-				{
-					"name":"width",
-					"type":"integer",
-					"default":400
-				},
-				{
-					"name":"height",
-					"type":"integer",
-					"default":300
-				},
-				{
-					"name":"color",
-					"type":"color",
-					"default":[240,240,240]
-				}
-			]
-		},
-		{
-			"name":"tk_label",
-			"mode":"no child",
-			"allowsibling":["tk_label","tk_button","tk_entry","tk_radio","tk_check","tk_listbox","tk_text","tk_scale"],
-			"allowchild":[],
-			"parent":["tk_window"],
-			"property":
-			[
-				{
-					"name":"caption",
-					"type":"memo",
-					"default":"tk_label"
-				},
-				{
-					"name":"compname",
-					"type":"string",
-					"default":""
-				},
-				{
-					"name":"justify",
-					"type":"list",
-					"items":["left","center","right"],
-					"fixed":true,
-					"default":"left"
-				},
-				{
-					"name":"anchor",
-					"type":"list",
-					"items":["e","w","n","s","ne","se","sw","sn","center"],
-					"fixed":true,
-					"default":"w"
-				},
-				{
-					"name":"left",
-					"type":"integer",
-					"default":20
-				},
-				{
-					"name":"top",
-					"type":"integer",
-					"default":20
-				},
-				{
-					"name":"width",
-					"type":"integer",
-					"default":150
-				},
-				{
-					"name":"height",
-					"type":"integer",
-					"default":30
-				},
-				{
-					"name":"color",
-					"type":"color",
-					"default":[240,240,240]
-				},
-				{
-					"name":"font",
-					"type":"font"
-				}
-			]
-		},
-		{
-			"name":"tk_button",
-			"mode":"no child",
-			"allowsibling":["tk_label","tk_button","tk_entry","tk_radio","tk_check","tk_listbox","tk_text","tk_scale"],
-			"allowchild":[],
-			"parent":["tk_window"],
-			"property":
-			[
-				{
-					"name":"caption",
-					"type":"string",
-					"default":"tk_button"
-				},
-				{
-					"name":"compname",
-					"type":"string",
-					"default":""
-				},
-				{
-					"name":"left",
-					"type":"integer",
-					"default":20
-				},
-				{
-					"name":"top",
-					"type":"integer",
-					"default":60
-				},
-				{
-					"name":"width",
-					"type":"integer",
-					"default":150
-				},
-				{
-					"name":"height",
-					"type":"integer",
-					"default":30
-				},
-				{
-					"name":"color",
-					"type":"color",
-					"default":[240,240,240]
-				},
-				{
-					"name":"font",
-					"type":"font"
-				}
-			]
-		},
-		{
-			"name":"tk_entry",
-			"mode":"no child",
-			"allowsibling":["tk_label","tk_button","tk_entry","tk_radio","tk_check","tk_listbox","tk_text","tk_scale"],
-			"allowchild":[],
-			"parent":["tk_window"],
-			"property":
-			[
-				{
-					"name":"caption",
-					"type":"string",
-					"default":"tk_entry"
-				},
-				{
-					"name":"compname",
-					"type":"string",
-					"default":""
-				},
-				{
-					"name":"left",
-					"type":"integer",
-					"default":20
-				},
-				{
-					"name":"top",
-					"type":"integer",
-					"default":100
-				},
-				{
-					"name":"width",
-					"type":"integer",
-					"default":150
-				},
-				{
-					"name":"height",
-					"type":"integer",
-					"default":30
-				},
-				{
-					"name":"password",
-					"type":"boolean",
-					"default":false
-				},
-				{
-					"name":"default",
-					"type":"string",
-					"default":""
-				},
-				{
-					"name":"font",
-					"type":"font"
-				}
-			]
-		},
-		{
-			"name":"tk_check",
-			"mode":"no child",
-			"allowsibling":["tk_label","tk_button","tk_entry","tk_radio","tk_check","tk_listbox","tk_text","tk_scale"],
-			"allowchild":[],
-			"parent":["tk_window"],
-			"property":
-			[
-				{
-					"name":"caption",
-					"type":"string",
-					"default":"tk_check"
-				},
-				{
-					"name":"compname",
-					"type":"string",
-					"default":""
-				},
-				{
-					"name":"left",
-					"type":"integer",
-					"default":20
-				},
-				{
-					"name":"top",
-					"type":"integer",
-					"default":140
-				},
-				{
-					"name":"width",
-					"type":"integer",
-					"default":150
-				},
-				{
-					"name":"height",
-					"type":"integer",
-					"default":30
-				},
-				{
-					"name":"font",
-					"type":"font"
-				}
-			]
-		},
-		{
-			"name":"tk_radio",
-			"mode":"no child",
-			"allowsibling":["tk_label","tk_button","tk_entry","tk_radio","tk_check","tk_listbox","tk_text","tk_scale"],
-			"allowchild":[],
-			"parent":["tk_window"],
-			"property":
-			[
-				{
-					"name":"caption",
-					"type":"string",
-					"default":"tk_radio"
-				},
-				{
-					"name":"compname",
-					"type":"string",
-					"default":""
-				},
-				{
-					"name":"left",
-					"type":"integer",
-					"default":20
-				},
-				{
-					"name":"top",
-					"type":"integer",
-					"default":180
-				},
-				{
-					"name":"width",
-					"type":"integer",
-					"default":150
-				},
-				{
-					"name":"height",
-					"type":"integer",
-					"default":30
-				},
-				{
-					"name":"font",
-					"type":"font"
-				}
-			]
-		},
-		{
-			"name":"tk_listbox",
-			"mode":"no child",
-			"allowsibling":["tk_label","tk_button","tk_entry","tk_radio","tk_check","tk_listbox","tk_text","tk_scale"],
-			"allowchild":[],
-			"parent":["tk_listbox"],
-			"property":
-			[
-				{
-					"name":"caption",
-					"type":"string",
-					"default":"tk_listbox"
-				},
-				{
-					"name":"compname",
-					"type":"string",
-					"default":""
-				},
-				{
-					"name":"left",
-					"type":"integer",
-					"default":20
-				},
-				{
-					"name":"top",
-					"type":"integer",
-					"default":220
-				},
-				{
-					"name":"width",
-					"type":"integer",
-					"default":150
-				},
-				{
-					"name":"height",
-					"type":"integer",
-					"default":60
-				},
-				{
-					"name":"lines",
-					"type":"memo"
-				},
-				{
-					"name":"font",
-					"type":"font"
-				}
-			]
-		},
-		{
-			"name":"tk_text",
-			"mode":"no child",
-			"allowsibling":["tk_label","tk_button","tk_entry","tk_radio","tk_check","tk_listbox","tk_text","tk_scale"],
-			"allowchild":[],
-			"parent":["tk_window"],
-			"property":
-			[
-				{
-					"name":"caption",
-					"type":"memo",
-					"default":"tk_text"
-				},
-				{
-					"name":"compname",
-					"type":"string",
-					"default":""
-				},
-				{
-					"name":"left",
-					"type":"integer",
-					"default":200
-				},
-				{
-					"name":"top",
-					"type":"integer",
-					"default":20
-				},
-				{
-					"name":"width",
-					"type":"integer",
-					"default":150
-				},
-				{
-					"name":"height",
-					"type":"integer",
-					"default":60
-				},
-				{
-					"name":"font",
-					"type":"font"
-				}
-			]
-		},
-		{
-			"name":"-"
-		}
-	]
+   "author" : "fenglinyushu",
+   "caption" : "DeWeb通用大屏看板配置系统",
+   "items" : [
+      {
+         "_m_" : "root",
+         "caption" : "root",
+         "mode" : "only child",
+         "child" : [],
+         "allowsibling" : [],
+         "allowchild" : [ "panel" ],
+         "property" : [
+            {
+               "_m_" : "caption",
+               "type" : "string",
+               "default" : "root"
+            },
+            {
+               "_m_" : "connectionstring",
+               "type" : "string",
+               "width" : 800,
+               "hint" : "数据库连接字符串"
+            },
+            {
+               "_m_" : "prefix",
+               "type" : "string",
+               "hint" : "自动生成控件的前缀, 主要用于一个窗体内多个看板. \r\n如果只有一个, 默认为空"
+            },
+            {
+               "_m_" : "image",
+               "type" : "string"
+            },
+            {
+               "_m_" : "color",
+               "type" : "color",
+               "default" : [ 254, 254, 254 ]
+            },
+            {
+               "_m_" : "interval",
+               "type" : "integer",
+               "default" : 5
+            }
+         ]
+      },
+      {
+         "_m_" : "amap",
+         "mode" : "sibling and child",
+         "allowsibling" : [ "panel" ],
+         "allowchild" : [ "panel", "bar", "horzbar" ],
+         "parent" : [ "none" ],
+         "property" : [
+            {
+               "_m_" : "caption",
+               "type" : "string",
+               "default" : "amap"
+            },
+            {
+               "_m_" : "type",
+               "type" : "string",
+               "default" : "amap",
+               "readonly" : true
+            },
+            {
+               "_m_" : "visible",
+               "type" : "boolean",
+               "default" : true
+            },
+            {
+               "_m_" : "name",
+               "type" : "string"
+            },
+            {
+               "_m_" : "left",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "right",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "top",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "bottom",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "width",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "height",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "dwstyle",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "dwattr",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "align",
+               "type" : "list",
+				"width":200,
+               "lists" : [ "left", "right", "top", "bottom", "client", "none" ]
+            },
+            {
+               "_m_" : "akleft",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "aktop",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "akright",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "akbottom",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "alignwithmargins",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "margins-bottom",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-left",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-right",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-top",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "lon",
+               "type" : "float"
+            },
+            {
+               "_m_" : "lat",
+               "type" : "float"
+            },
+            {
+               "_m_" : "zoom",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "ak",
+               "type" : "string"
+            },
+            {
+               "_m_" : "style",
+               "type" : "list",
+               "lists" : [
+                  "normal",
+                  "dark",
+                  "light",
+                  "whitesmoke",
+                  "fresh",
+                  "grey",
+                  "graffti",
+                  "macaron",
+                  "blue",
+                  "darkblue",
+                  "wine"
+               ]
+            }
+         ]
+      },
+      {
+         "_m_" : "bar_echarts",
+         "mode" : "sibling and child",
+         "allowsibling" : [ "panel" ],
+         "allowchild" : [],
+         "parent" : [ "none" ],
+         "property" : [
+            {
+               "_m_" : "caption",
+               "type" : "string",
+               "default" : "bar_echarts"
+            },
+            {
+               "_m_" : "type",
+               "type" : "string",
+               "default" : "bar_echarts",
+               "readonly" : true
+            },
+            {
+               "_m_" : "visible",
+               "type" : "boolean",
+               "default" : true
+            },
+            {
+               "_m_" : "name",
+               "type" : "string"
+            },
+            {
+               "_m_" : "left",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "right",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "top",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "bottom",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "width",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "height",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "dwstyle",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "dwattr",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "align",
+               "type" : "list","width":200,
+               "lists" : [ "left", "right", "top", "bottom", "client", "none" ]
+            },
+            {
+               "_m_" : "akleft",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "aktop",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "akright",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "akbottom",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "alignwithmargins",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "margins-bottom",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-left",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-right",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-top",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "sql",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "option",
+               "type" : "memo",
+               "height" : 300,
+               "width" : 800,
+               "default" : "dwdata = [\r\n//dw__start\r\n  ['OpenAI', 'Sora'],\r\n  ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],\r\n  [320, 332, 301, 334, 390, 330, 320],\r\n  [120, 232, 201, 234, 290, 230, 280]\r\n//dw__end\r\n];\r\n\r\n\r\noption = {\r\n  tooltip: {\r\n    trigger: 'axis',\r\n    axisPointer: {\r\n      type: 'shadow'\r\n    }\r\n  },\r\n  legend: {\r\n    orient: 'horizontal', // 水平排列\r\n    align: 'auto', // 自动对齐\r\n    top: '0%', // 设置在顶部\r\n    left: 'center', // 设置水平居中\r\n    data: dwdata[0],\r\n    textStyle: {\r\n      color: '#eee'\r\n    }\r\n  },\r\n  yAxis: {\r\n    type: 'value',\r\n    boundaryGap: [0, 0.01]\r\n  },\r\n  xAxis: {\r\n    type: 'category',\r\n    data: dwdata[1]\r\n  },\r\n  series: dwdata[0].map((name, index) => ({\r\n    name: name,\r\n    type: 'bar',\r\n    data: dwdata[index + 2] // 跳过前两个元素（名称数组和Y轴数据）\r\n  }))\r\n};",
+               "hint" : "当前图表的核心参数\r\n可修改//dw__start和//dw__end之间的数据更新图表\r\n也可通过SQL更新"
+            }
+         ]
+      },
+      {
+         "_m_" : "bar_horz_echarts",
+         "mode" : "sibling and child",
+         "allowsibling" : [ "panel" ],
+         "allowchild" : [],
+         "parent" : [ "none" ],
+         "property" : [
+            {
+               "_m_" : "caption",
+               "type" : "string",
+               "default" : "bar_horz_echarts"
+            },
+            {
+               "_m_" : "type",
+               "type" : "string",
+               "default" : "bar_horz_echarts",
+               "readonly" : true
+            },
+            {
+               "_m_" : "visible",
+               "type" : "boolean",
+               "default" : true
+            },
+            {
+               "_m_" : "name",
+               "type" : "string"
+            },
+            {
+               "_m_" : "left",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "right",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "top",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "bottom",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "width",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "height",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "dwstyle",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "dwattr",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "align",
+               "type" : "list",
+               "lists" : [ "left", "right", "top", "bottom", "client", "none" ]
+            },
+            {
+               "_m_" : "akleft",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "aktop",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "akright",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "akbottom",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "alignwithmargins",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "margins-bottom",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-left",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-right",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-top",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "sql",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "option",
+               "type" : "memo",
+               "height" : 300,
+               "width" : 800,
+               "default" : "dwdata = [\r\n//dw__start\r\n  ['OpenAI', 'Sora'],\r\n  ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],\r\n  [320, 332, 301, 334, 390, 330, 320],\r\n  [120, 232, 201, 234, 290, 230, 280]\r\n//dw__end\r\n];\r\n\r\n\r\noption = {\r\n  tooltip: {\r\n    trigger: 'axis',\r\n    axisPointer: {\r\n      type: 'shadow'\r\n    }\r\n  },\r\n  legend: {\r\n    orient: 'horizontal', // 水平排列\r\n    align: 'auto', // 自动对齐\r\n    top: '0%', // 设置在顶部\r\n    left: 'center', // 设置水平居中\r\n    data: dwdata[0],\r\n    textStyle: {\r\n      color: '#fff'\r\n    }\r\n  },\r\n  xAxis: {\r\n    type: 'value',\r\n    boundaryGap: [0, 0.01]\r\n  },\r\n  yAxis: {\r\n    type: 'category',\r\n    data: dwdata[1]\r\n  },\r\n  series: dwdata[0].map((name, index) => ({\r\n    name: name,\r\n    type: 'bar',\r\n    data: dwdata[index + 2] // 跳过前两个元素（名称数组和Y轴数据）\r\n  }))\r\n};",
+               "hint" : "当前图表的核心参数\r\n可修改//dw__start和//dw__end之间的数据更新图表\r\n也可通过SQL更新"
+            }
+         ]
+      },
+      {
+         "_m_" : "bmap",
+         "mode" : "sibling and child",
+         "allowsibling" : [ "panel" ],
+         "allowchild" : [ "panel", "bar", "horzbar" ],
+         "parent" : [ "none" ],
+         "property" : [
+            {
+               "_m_" : "caption",
+               "type" : "string",
+               "default" : "bmap"
+            },
+            {
+               "_m_" : "type",
+               "type" : "string",
+               "default" : "bmap",
+               "readonly" : true
+            },
+            {
+               "_m_" : "visible",
+               "type" : "boolean",
+               "default" : true
+            },
+            {
+               "_m_" : "name",
+               "type" : "string"
+            },
+            {
+               "_m_" : "left",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "right",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "top",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "bottom",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "width",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "height",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "dwstyle",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "dwattr",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "align",
+               "type" : "list","width":200,
+               "lists" : [ "left", "right", "top", "bottom", "client", "none" ]
+            },
+            {
+               "_m_" : "akleft",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "aktop",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "akright",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "akbottom",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "alignwithmargins",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "margins-bottom",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-left",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-right",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-top",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "lon",
+               "type" : "float"
+            },
+            {
+               "_m_" : "lat",
+               "type" : "float"
+            },
+            {
+               "_m_" : "zoom",
+               "type" : "int"
+            },
+            {
+               "_m_" : "ak",
+               "type" : "string"
+            },
+            {
+               "_m_" : "style",
+               "type" : "list",
+               "lists" : [
+                  "normal",
+                  "dark",
+                  "light",
+                  "whitesmoke",
+                  "fresh",
+                  "grey",
+                  "graffti",
+                  "macaron",
+                  "blue",
+                  "darkblue",
+                  "wine"
+               ]
+            }
+         ]
+      },
+      {
+         "_m_" : "datav_water",
+         "mode" : "sibling and child",
+         "allowsibling" : [ "panel" ],
+         "allowchild" : [],
+         "parent" : [ "none" ],
+         "property" : [
+            {
+               "_m_" : "caption",
+               "type" : "string",
+               "default" : "datav-water"
+            },
+            {
+               "_m_" : "type",
+               "type" : "string",
+               "default" : "datav_water",
+               "readonly" : true
+            },
+            {
+               "_m_" : "visible",
+               "type" : "boolean",
+               "default" : true
+            },
+            {
+               "_m_" : "name",
+               "type" : "string"
+            },
+            {
+               "_m_" : "left",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "right",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "top",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "bottom",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "width",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "height",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "dwstyle",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "dwattr",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "align",
+               "type" : "list","width":200,
+               "lists" : [ "left", "right", "top", "bottom", "client", "none" ]
+            },
+            {
+               "_m_" : "shape",
+               "type" : "list",
+               "lists" : [ "rect", "round", "circle" ]
+            },
+            {
+               "_m_" : "akleft",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "aktop",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "akright",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "akbottom",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "alignwithmargins",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "margins-bottom",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-left",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-right",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-top",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "sql",
+               "type" : "string",
+               "width" : 800
+            }
+         ]
+      },
+      {
+         "_m_" : "datetime",
+         "mode" : "no child",
+         "allowsibling" : [ "panel" ],
+         "allowchild" : [],
+         "parent" : [ "none" ],
+         "property" : [
+            {
+               "_m_" : "caption",
+               "type" : "string",
+               "default" : "datetime"
+            },
+            {
+               "_m_" : "type",
+               "type" : "string",
+               "default" : "datetime",
+               "readonly" : true
+            },
+            {
+               "_m_" : "visible",
+               "type" : "boolean",
+               "default" : true
+            },
+            {
+               "_m_" : "name",
+               "type" : "string"
+            },
+            {
+               "_m_" : "left",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "right",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "top",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "bottom",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "width",
+               "type" : "integer",
+               "default" : 300
+            },
+            {
+               "_m_" : "height",
+               "type" : "integer",
+               "default" : "30"
+            },
+            {
+               "_m_" : "color",
+               "type" : "color",
+               "default" : [ 254, 254, 254 ]
+            },
+            {
+               "_m_" : "dwstyle",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "dwattr",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "font",
+               "type" : "font",
+               "height" : 45
+            },
+            {
+               "_m_" : "align",
+               "type" : "list",
+               "lists" : [ "left", "right", "top", "bottom", "client", "none" ],
+               "width" : 200
+            },
+            {
+               "_m_" : "alignment",
+               "type" : "list","width":200,
+               "lists" : [ "left", "center", "right" ]
+            },
+            {
+               "_m_" : "layout",
+               "type" : "list","width":200,
+               "lists" : [ "top", "center", "bottom" ]
+            },
+            {
+               "_m_" : "akleft",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "aktop",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "akright",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "akbottom",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "alignwithmargins",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "margins-bottom",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-left",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-right",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-top",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "sql",
+               "type" : "string",
+               "width" : 800
+            }
+         ]
+      },
+      {
+         "_m_" : "image",
+         "mode" : "sibling and child",
+         "allowsibling" : [ "panel" ],
+         "allowchild" : [ "panel", "bar", "horzbar" ],
+         "parent" : [ "none" ],
+         "property" : [
+            {
+               "_m_" : "caption",
+               "type" : "string",
+               "default" : "image"
+            },
+            {
+               "_m_" : "type",
+               "type" : "string",
+               "default" : "image",
+               "readonly" : true
+            },
+            {
+               "_m_" : "visible",
+               "type" : "boolean",
+               "default" : true
+            },
+            {
+               "_m_" : "name",
+               "type" : "string"
+            },
+            {
+               "_m_" : "image",
+               "type" : "string"
+            },
+            {
+               "_m_" : "left",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "right",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "top",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "bottom",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "width",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "height",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "dwstyle",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "dwattr",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "align",
+               "type" : "list","width":200,
+               "lists" : [ "left", "right", "top", "bottom", "client", "none" ]
+            },
+            {
+               "_m_" : "akleft",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "aktop",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "akright",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "akbottom",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "alignwithmargins",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "margins-bottom",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-left",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-right",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-top",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "fit",
+               "type" : "list",
+               "lists" : [ "cover", "contain", "fill", "none" ]
+            },
+            {
+               "_m_" : "sql",
+               "type" : "string",
+               "width" : 800
+            }
+         ]
+      },
+      {
+         "_m_" : "label",
+         "mode" : "sibling and child",
+         "allowsibling" : [ "panel" ],
+         "allowchild" : [ "panel", "bar", "horzbar" ],
+         "parent" : [ "none" ],
+         "property" : [
+            {
+               "_m_" : "caption",
+               "type" : "string",
+               "default" : "label"
+            },
+            {
+               "_m_" : "type",
+               "type" : "string",
+               "default" : "label",
+               "readonly" : true
+            },
+            {
+               "_m_" : "visible",
+               "type" : "boolean",
+               "default" : true
+            },
+            {
+               "_m_" : "name",
+               "type" : "string"
+            },
+            {
+               "_m_" : "left",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "right",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "top",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "bottom",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "width",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "height",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "color",
+               "type" : "color"
+            },
+            {
+               "_m_" : "dwstyle",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "dwattr",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "font",
+               "type" : "font",
+               "height" : 45
+            },
+            {
+               "_m_" : "align",
+               "type" : "list","width":200,
+               "lists" : [ "left", "right", "top", "bottom", "client", "none" ]
+            },
+            {
+               "_m_" : "alignment",
+               "type" : "list","width":200,
+               "lists" : [ "left", "center", "right" ]
+            },
+            {
+               "_m_" : "layout",
+               "type" : "list",
+               "lists" : [ "top", "center", "bottom" ]
+            },
+            {
+               "_m_" : "akleft",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "aktop",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "akright",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "akbottom",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "alignwithmargins",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "margins-bottom",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-left",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-right",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-top",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "sql",
+               "type" : "string",
+               "width" : 800
+            }
+         ]
+      },
+      {
+         "_m_" : "line_echarts",
+         "mode" : "sibling and child",
+         "allowsibling" : [ "panel" ],
+         "allowchild" : [],
+         "parent" : [ "none" ],
+         "property" : [
+            {
+               "_m_" : "caption",
+               "type" : "string",
+               "default" : "line_echarts"
+            },
+            {
+               "_m_" : "type",
+               "type" : "string",
+               "default" : "line_echarts",
+               "readonly" : true
+            },
+            {
+               "_m_" : "visible",
+               "type" : "boolean",
+               "default" : true
+            },
+            {
+               "_m_" : "name",
+               "type" : "string"
+            },
+            {
+               "_m_" : "left",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "right",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "top",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "bottom",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "width",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "height",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "dwstyle",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "dwattr",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "align",
+               "type" : "list","width":200,
+               "lists" : [ "left", "right", "top", "bottom", "client", "none" ]
+            },
+            {
+               "_m_" : "akleft",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "aktop",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "akright",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "akbottom",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "alignwithmargins",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "margins-bottom",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-left",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-right",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-top",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "sql",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "option",
+               "type" : "memo",
+               "width" : 800,
+               "height" : 300,
+               "default" : "dwdata = [\r\n//dw__start\r\n  ['OpenAI', 'Sora'],\r\n  ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],\r\n  [320, 332, 301, 334, 390, 330, 320],\r\n  [120, 232, 201, 234, 290, 230, 280]\r\n//dw__end\r\n];\r\noption = {\r\n  tooltip: {\r\n    trigger: 'axis'\r\n  },\r\n  legend: {\r\n    orient: 'horizontal', // 水平排列\r\n    align: 'auto', // 自动对齐\r\n    top: '0%', // 设置在顶部\r\n    left: 'center', // 设置水平居中\r\n    data: dwdata[0],\r\n    textStyle: {\r\n      color: '#fff'\r\n    }\r\n  },\r\n  grid: {\r\n    left: '3%',\r\n    right: '4%',\r\n    bottom: '3%',\r\n    containLabel: true\r\n  },\r\n  xAxis: {\r\n    type: 'category',\r\n    boundaryGap: false,\r\n    data: dwdata[1]\r\n  },\r\n  yAxis: {\r\n    splitLine: {\r\n      show: false // 隐藏水平的分隔线\r\n    },\r\n    type: 'value'\r\n  },\r\n  series: [\r\n    {\r\n      name: dwdata[0][0],\r\n      type: 'line',\r\n      data: dwdata[2]\r\n    },\r\n    {\r\n      name: dwdata[0][1],\r\n      type: 'line',\r\n      data: dwdata[3]\r\n    }\r\n  ]\r\n};\r\n"
+            }
+         ]
+      },
+      {
+         "_m_" : "map",
+         "mode" : "sibling and child",
+         "allowsibling" : [ "panel" ],
+         "allowchild" : [ "panel", "bar", "horzbar" ],
+         "parent" : [ "none" ],
+         "property" : [
+            {
+               "_m_" : "caption",
+               "type" : "string",
+               "default" : "map"
+            },
+            {
+               "_m_" : "type",
+               "type" : "string",
+               "default" : "map",
+               "readonly" : true
+            },
+            {
+               "_m_" : "visible",
+               "type" : "boolean",
+               "default" : true
+            },
+            {
+               "_m_" : "name",
+               "type" : "string"
+            },
+            {
+               "_m_" : "dir",
+               "type" : "string"
+            },
+            {
+               "_m_" : "data",
+               "type" : "string"
+            },
+            {
+               "_m_" : "left",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "right",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "top",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "bottom",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "width",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "height",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "color",
+               "type" : "color"
+            },
+            {
+               "_m_" : "dwstyle",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "dwattr",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "font",
+               "type" : "font"
+            },
+            {
+               "_m_" : "align",
+               "type" : "list","width":200,
+               "lists" : [ "left", "right", "top", "bottom", "client", "none" ]
+            },
+            {
+               "_m_" : "akleft",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "aktop",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "akright",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "akbottom",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "alignwithmargins",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "margins-bottom",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-left",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-right",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-top",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "sql",
+               "type" : "string",
+               "width" : 800
+            }
+         ]
+      },
+      {
+         "_m_" : "panel",
+         "mode" : "sibling and child",
+         "allowsibling" : [ "panel" ],
+         "allowchild" : [
+            "amap",
+            "bar_echarts",
+            "bar_horz_echarts",
+            "bmap",
+            "datav_water",
+            "datetime",
+            "horzbar",
+            "image",
+            "label",
+            "line_echarts",
+            "map",
+            "panel",
+            "progress",
+            "progress_echarts",
+            "ring",
+            "stringgrid"
+         ],
+         "parent" : [ "none" ],
+         "property" : [
+            {
+               "_m_" : "caption",
+               "type" : "string",
+               "default" : "panel"
+            },
+            {
+               "_m_" : "type",
+               "type" : "string",
+               "default" : "panel",
+               "readonly" : true
+            },
+            {
+               "_m_" : "visible",
+               "type" : "boolean",
+               "default" : true
+            },
+            {
+               "_m_" : "name",
+               "type" : "string"
+            },
+            {
+               "_m_" : "image",
+               "type" : "string"
+            },
+            {
+               "_m_" : "style",
+               "type" : "integer",
+               "hint" : "边框样式,0~14"
+            },
+            {
+               "_m_" : "left",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "right",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "top",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "bottom",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "width",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "height",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "color",
+               "type" : "color",
+               "default" : [ 254, 254, 254 ]
+            },
+            {
+               "_m_" : "dwstyle",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "dwattr",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "align",
+               "type" : "list",
+               "lists" : [ "left", "right", "top", "bottom", "client", "none" ],
+               "width" : 200
+            },
+            {
+               "_m_" : "akleft",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "aktop",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "akright",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "akbottom",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "alignwithmargins",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "margins-bottom",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-left",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-right",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-top",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "titlewidth",
+               "type" : "integer",
+               "default" : "250",
+               "hint" : "样式11/14时, 标题栏的宽度"
+            },
+            {
+               "_m_" : "hidden",
+               "type" : "boolean",
+               "hint" : "样式11/14时, 是否隐藏标题栏左右的装饰块"
+            },
+            {
+               "_m_" : "borderhidden",
+               "type" : "boolean",
+               "hint" : "样式14时, 是否隐藏边框"
+            },
+            {
+               "_m_" : "background",
+               "type" : "string",
+               "default" : "#00f",
+               "hint" : "样式11/14时, 标题栏的背景色"
+            },
+            {
+               "_m_" : "font",
+               "type" : "font",
+               "height" : 45
+            },
+            {
+               "_m_" : "sql",
+               "type" : "string",
+               "width" : 800
+            }
+         ]
+      },
+      {
+         "_m_" : "progress",
+         "mode" : "sibling and child",
+         "allowsibling" : [ "panel" ],
+         "allowchild" : [
+            "datav_water",
+            "datetime",
+            "horzbar",
+            "image",
+            "label",
+            "map",
+            "panel",
+            "progress"
+         ],
+         "parent" : [ "none" ],
+         "property" : [
+            {
+               "_m_" : "caption",
+               "type" : "string",
+               "default" : "progress"
+            },
+            {
+               "_m_" : "type",
+               "type" : "string",
+               "default" : "progress",
+               "readonly" : true
+            },
+            {
+               "_m_" : "visible",
+               "type" : "boolean",
+               "default" : true
+            },
+            {
+               "_m_" : "name",
+               "type" : "string"
+            },
+            {
+               "_m_" : "left",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "right",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "top",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "dwstyle",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "bottom",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "width",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "height",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "dwattr",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "align",
+               "type" : "list",
+               "lists" : [ "left", "right", "top", "bottom", "client", "none" ],
+               "width" : 200
+            },
+            {
+               "_m_" : "akleft",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "aktop",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "akright",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "background",
+               "type" : "color"
+            },
+            {
+               "_m_" : "akbottom",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "alignwithmargins",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "margins-bottom",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-left",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-right",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-top",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "strokewidth",
+               "type" : "integer",
+               "default" : "6"
+            },
+            {
+               "_m_" : "textcolor",
+               "type" : "color"
+            },
+            {
+               "_m_" : "value",
+               "type" : "integer",
+               "default" : "0"
+            },
+            {
+               "_m_" : "showtext",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "textinside",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "style",
+               "type" : "list",
+               "lists" : [ "line", "circle", "dashboard" ],
+               "width" : 200
+            },
+            {
+               "_m_" : "sql",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "barcolor",
+               "type" : "color",
+               "default" : [ 64, 158, 255 ]
+            },
+            {
+               "_m_" : "textcolor",
+               "type" : "color",
+               "default" : [ 255, 255, 255 ]
+            }
+         ]
+      },
+      {
+         "_m_" : "progress_echarts",
+         "mode" : "sibling and child",
+         "allowsibling" : [ "panel" ],
+         "allowchild" : [],
+         "parent" : [ "none" ],
+         "property" : [
+            {
+               "_m_" : "caption",
+               "type" : "string",
+               "default" : "progress_echarts"
+            },
+            {
+               "_m_" : "type",
+               "type" : "string",
+               "default" : "progress_echarts",
+               "readonly" : true
+            },
+            {
+               "_m_" : "visible",
+               "type" : "boolean",
+               "default" : true
+            },
+            {
+               "_m_" : "name",
+               "type" : "string"
+            },
+            {
+               "_m_" : "left",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "right",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "top",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "bottom",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "width",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "height",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "dwstyle",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "dwattr",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "align",
+               "type" : "list","width":200,
+               "lists" : [ "left", "right", "top", "bottom", "client", "none" ]
+            },
+            {
+               "_m_" : "akleft",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "aktop",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "akright",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "akbottom",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "alignwithmargins",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "margins-bottom",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-left",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-right",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-top",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "sql",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "option",
+               "type" : "memo",
+               "height" : 300,
+               "width" : 800,
+               "default" : "dwdata = [\r\n//dw__start\r\n  'Perfect',\r\n  20\r\n//de__end\r\n  ];\r\n  \r\ngaugeData = [\r\n  {\r\n    value: dwdata[1],\r\n    name: dwdata[0],\r\n    title: {\r\n      offsetCenter: ['0%', '-20%']\r\n    },\r\n    detail: {\r\n      valueAnimation: true,\r\n      offsetCenter: ['0%', '20%']\r\n    }\r\n  },\r\n];\r\noption = {\r\n  series: [\r\n    {\r\n      type: 'gauge',\r\n      startAngle: 90,\r\n      endAngle: -270,\r\n      pointer: {\r\n        show: false\r\n      },\r\n      progress: {\r\n        show: true,\r\n        overlap: false,\r\n        roundCap: true,\r\n        clip: false,\r\n        itemStyle: {\r\n          borderWidth: 1,\r\n          borderColor: '#464646'\r\n        }\r\n      },\r\n      axisLine: {\r\n        lineStyle: {\r\n          width: 10\r\n        }\r\n      },\r\n      splitLine: {\r\n        show: false,\r\n        distance: 0,\r\n        length: 10\r\n      },\r\n      axisTick: {\r\n        show: false\r\n      },\r\n      axisLabel: {\r\n        show: false,\r\n        distance: 50\r\n      },\r\n      data: gaugeData,\r\n      title: {\r\n        color:'#ddd',\r\n        fontSize: 14\r\n      },\r\n      detail: {\r\n        width: 50,\r\n        height: 14,\r\n        fontSize: 18,\r\n        color: 'inherit',\r\n        borderColor: 'inherit',\r\n        borderRadius: 20,\r\n        borderWidth: 0,\r\n        formatter: '{value}%'\r\n      }\r\n    }\r\n  ]\r\n};\r\n"
+            }
+         ]
+      },
+      {
+         "_m_" : "ring",
+         "mode" : "sibling and child",
+         "allowsibling" : [ "panel" ],
+         "allowchild" : [],
+         "parent" : [ "none" ],
+         "property" : [
+            {
+               "_m_" : "caption",
+               "type" : "string",
+               "default" : "ring"
+            },
+            {
+               "_m_" : "type",
+               "type" : "string",
+               "default" : "ring",
+               "readonly" : true
+            },
+            {
+               "_m_" : "visible",
+               "type" : "boolean",
+               "default" : true
+            },
+            {
+               "_m_" : "name",
+               "type" : "string"
+            },
+            {
+               "_m_" : "left",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "right",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "top",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "bottom",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "width",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "height",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "dwstyle",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "dwattr",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "align",
+               "type" : "list","width":200,
+               "lists" : [ "left", "right", "top", "bottom", "client", "none" ]
+            },
+            {
+               "_m_" : "akleft",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "aktop",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "akright",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "akbottom",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "alignwithmargins",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "margins-bottom",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-left",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-right",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-top",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "sql",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "option",
+               "type" : "memo",
+               "height" : 300,
+               "width" : 800,
+               "default" : "option = {\r\n  label: {\r\n    color: '#fff',\r\n    fontSize: 12\r\n  },\r\n  series: [\r\n    {\r\n      type: 'pie',\r\n      radius: ['40%', '60%'],\r\n      center: ['50%', '50%'],\r\n      itemStyle: {\r\n        borderRadius: 5\r\n      },\r\n      data: [\r\n        { value: 40, name: '张东' },\r\n        { value: 30, name: '陈诃' },\r\n        { value: 28, name: '张西' },\r\n        { value: 20, name: '柳林桥'},\r\n        { value: 22, name: '黄桥' }\r\n      ]\r\n    }\r\n  ]\r\n};\r\n"
+            }
+         ]
+      },
+      {
+         "_m_" : "stringgrid",
+         "mode" : "sibling and child",
+         "allowsibling" : [ "panel" ],
+         "allowchild" : [
+            "datav_water",
+            "datetime",
+            "horzbar",
+            "image",
+            "label",
+            "map",
+            "panel",
+            "progress"
+         ],
+         "parent" : [ "none" ],
+         "property" : [
+            {
+               "_m_" : "caption",
+               "type" : "string",
+               "default" : "stringgrid"
+            },
+            {
+               "_m_" : "type",
+               "type" : "string",
+               "default" : "stringgrid",
+               "readonly" : true
+            },
+            {
+               "_m_" : "visible",
+               "type" : "boolean",
+               "default" : true
+            },
+            {
+               "_m_" : "name",
+               "type" : "string"
+            },
+            {
+               "_m_" : "left",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "right",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "top",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "bottom",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "width",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "height",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "dwstyle",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "dwattr",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "align",
+               "type" : "list","width":200,
+               "lists" : [ "left", "right", "top", "bottom", "client", "none" ]
+            },
+            {
+               "_m_" : "akleft",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "aktop",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "akright",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "akbottom",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "alignwithmargins",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "margins-bottom",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-left",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-right",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-top",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "sql",
+               "type" : "string",
+               "width" : 800
+            },
+            {
+               "_m_" : "colwidths",
+               "type" : "string"
+            },
+            {
+               "_m_" : "rowheights",
+               "type" : "string"
+            },
+            {
+               "_m_" : "rownum",
+               "type" : "integer",
+               "default" : "5"
+            },
+            {
+               "_m_" : "headerbgc",
+               "type" : "color",
+               "default" : [ 0, 186, 255 ]
+            },
+            {
+               "_m_" : "oddrowbgc",
+               "type" : "color",
+               "default" : [ 0, 59, 81 ]
+            },
+            {
+               "_m_" : "evenrowbgc",
+               "type" : "color",
+               "default" : [ 10, 39, 50 ]
+            },
+            {
+               "_m_" : "waittime",
+               "type" : "integer",
+               "default" : "3000"
+            },
+            {
+               "_m_" : "headerheight",
+               "type" : "integer",
+               "default" : "35"
+            },
+            {
+               "_m_" : "colaligns",
+               "type" : "string"
+            },
+            {
+               "_m_" : "index",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "indexheader",
+               "type" : "string"
+            },
+            {
+               "_m_" : "carousel",
+               "type" : "list",
+               "lists" : [ "single", "page" ]
+            },
+            {
+               "_m_" : "hoverpause",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "header",
+               "type" : "boolean",
+               "default" : true
+            }
+         ]
+      }
+   ]
 }
