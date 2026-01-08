@@ -5,7 +5,9 @@ uses
   Main in 'Main.pas' {MainForm},
   teUnit in 'teUnit.pas',
   SysVars in 'SysVars.pas',
-  About in 'About.pas' {Form_About};
+  About in 'About.pas' {Form_About},
+  Vcl.Themes,
+  Vcl.Styles;
 
 {$R *.res}
 

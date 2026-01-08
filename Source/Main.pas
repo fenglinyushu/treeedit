@@ -251,6 +251,7 @@ var
     oFlowPanel  : TFlowPanel;
     oPanel      : TPanel;
     oLabel      : TLabel;
+    oLabelHint  : TLabel;
     oLabelProp  : TLabel;
     oSpinEdit   : TSpinEdit;
     oEdit       : TEdit;
@@ -292,15 +293,17 @@ begin
             oTab := TTabSheet.Create(self);
             with oTab do begin
 
-                TabVisible  := False;
+                //TabVisible  := False;
                 PageControl := PageControl1;
                 Caption     := joModule.S['_m_'];
                 //
                 oFlowPanel  := TFlowPanel.Create(self);
                 oFlowPanel.Parent   := oTab;
                 oFlowPanel.Align    := alClient;
-                oFlowpanel.Color    := clWhite;
-                oFlowPanel.BevelOuter   := bvNone;
+                oFlowPanel.BevelOuter       := bvNone;
+                oFlowPanel.ParentBackground := False;
+                oFlowPanel.Color            := clBtnFace;
+                oFlowPanel.StyleElements    := [];
 
                 //
                 //add width, source
@@ -310,54 +313,62 @@ begin
                     //
                     sType   := joProp.S['type'];
 
-                    //属性的外框
+                    //属性的外框----------------------------------------------------------------------------------------
                     oPanel              := TPanel.Create(nil);
                     oPanel.Parent       := oFlowPanel;
                     if joProp.Contains('width') then begin
                         oPanel.Width    := joProp.I['width'];
                     end else begin
-                        oPanel.Width    := 400;
+                        oPanel.Width    := 200;
                         if sType = 'string' then begin
-                            oPanel.Width    := 400;
-                        end else if sType = 'memo' then begin
-                            oPanel.Width    := 400;
-                        end else if sType = 'integer' then begin
                             oPanel.Width    := 200;
+                        end else if sType = 'memo' then begin
+                            oPanel.Width    := 200;
+                        end else if sType = 'integer' then begin
+                            oPanel.Width    := 95;
                         end else if sType = 'source' then begin
                         end else if sType = 'boolean' then begin
-                            oPanel.Width    := 200;
+                            oPanel.Width    := 95;
                         end else if sType = 'list' then begin
                         end else if sType = 'color' then begin
-                            oPanel.Width    := 200;
+                            oPanel.Width    := 95;
                         end else if sType = 'font' then begin
-                            oPanel.Width    := 200;
+                            oPanel.Width    := 95;
                         end else if sType = 'float' then begin
-                            oPanel.Width    := 200;
+                            oPanel.Width    := 95;
                         end;
                     end;
                     oPanel.AlignWithMargins := True;
-                    oPanel.Margins.SetBounds(0,3,0,3);
+                    oPanel.Margins.SetBounds(5,5,5,5);
                     if bFoundSrc then begin
                         //oPanel.Align   := alBottom;
                         //oPanel.Top     := 9999;
                     end;
-                    oPanel.Height       := 30;
+                    if joProp.Contains('height') then begin
+                        oPanel.Height    := joProp.I['height'];
+                    end else begin
+                        oPanel.Height       := 70;
+                    end;
                     oPanel.BorderWidth  := 0;
                     oPanel.BevelOuter   := bvNone;
+                    oPanel.BevelKind    := bkTile;
                     if joProp.Contains('height') then begin
                         oPanel.Height       := joProp.I['height'];
                     end;
+                    oPanel.ParentBackground := False;
+                    oPanel.Color            := clWhite;
+                    oPanel.StyleElements    := [];
 
-                    //属性名称
+                    //属性名称------------------------------------------------------------------------------------------
                     oLabel    := TLabel.Create(oPanel);
                     oLabel.Parent       := oPanel;
-                    oLabel.Align        := alLeft;
+                    oLabel.Align        := alTop;
                     oLabel.Layout       := tlCenter;
                     oLabel.AutoSize     := False;
-                    oLabel.Width        := 120;
-                    oLabel.Alignment    := taRightJustify;
+                    oLabel.Height       := 20;
+                    //oLabel.Alignment    := taRightJustify;
                     oLabel.AlignWithMargins := True;
-                    oLabel.Margins.Right    := 8;
+                    oLabel.Margins.SetBounds(5,0,5,0);
 
                     if joProp.Contains('caption') then begin
                         oLabel.Caption      := joProp.S['caption'];
@@ -365,16 +376,41 @@ begin
                         oLabel.Caption      := joProp.S['_m_'];
                     end;
 
-                    //属性值
+
+                    //属性提示------------------------------------------------------------------------------------------
+                    oLabelHint  := TLabel.Create(oPanel);
+                    with oLabelHint do begin
+                        Parent      := oPanel;
+                        Align       := alBottom;
+                        AutoSize    := False;
+                        Height      := 20;
+                        AlignWithMargins := True;
+                        Margins.SetBounds(5,0,5,0);
+                        Font.Size   := 8;
+                        Margins.Right       := 8;
+                        if joProp.Contains('hint') then begin
+                            oLabelHint.Caption := joProp.S['hint'];
+                        end else begin
+                            oLabelHint.Caption := '';
+                        end;
+                        if joProp.S['type'] = 'font' then begin
+                            Visible := False;
+                        end;
+                    end;
+
+                    //属性值--------------------------------------------------------------------------------------------
                     if joProp.S['type'] = 'boolean' then begin
                         oCheckBox           := TCheckBox.Create(oPanel);
                         oCheckBox.Parent    := oPanel;
                         oCheckBox.Align     := alClient;
+                        oCheckBox.Font.Color    := 0;
                         //显示提示
                         if joProp.Contains('hint') then begin
                             oCheckBox.ShowHint  := True;
                             oCheckBox.Hint      := joProp.S['hint'];
                         end;
+                        oCheckBox.AlignWithMargins := True;
+                        oCheckBox.Margins.SetBounds(3,0,3,0);
                     end else if joProp.S['type'] = 'color' then begin
                         oLabelProp          := TLabel.Create(oPanel);
                         oLabelProp.Parent       := oPanel;
@@ -391,24 +427,32 @@ begin
                         if joProp.Contains('default') then begin
                             oLabelprop.Color    := teArrayToColor(joProp.A['default']);
                         end;
+                        oLabelprop.AlignWithMargins := True;
+                        oLabelprop.Margins.SetBounds(3,0,3,0);
                     end else if joProp.S['type'] = 'float' then begin
                         oEdit          := TEdit.Create(oPanel);
                         oEdit.Parent   := oPanel;
                         oEdit.Align    := alClient;
+                        oEdit.Font.Color    := 0;
                         //显示提示
                         if joProp.Contains('hint') then begin
                             oEdit.ShowHint  := True;
                             oEdit.Hint      := joProp.S['hint'];
                         end;
+                        oEdit.AlignWithMargins := True;
+                        oEdit.Margins.SetBounds(3,0,3,0);
                     end else if joProp.S['type'] = 'integer' then begin
                         oEdit          := TEdit.Create(oPanel);
                         oEdit.Parent   := oPanel;
                         oEdit.Align    := alClient;
+                        oEdit.Font.Color    := 0;
                         //显示提示
                         if joProp.Contains('hint') then begin
                             oEdit.ShowHint  := True;
                             oEdit.Hint      := joProp.S['hint'];
                         end;
+                        oEdit.AlignWithMargins := True;
+                        oEdit.Margins.SetBounds(3,0,3,0);
                     end else if joProp.S['type'] = 'font' then begin
                         oLabelProp              := TLabel.Create(oPanel);
                         oLabelProp.Parent       := oPanel;
@@ -421,10 +465,13 @@ begin
                             oLabelProp.ShowHint  := True;
                             oLabelProp.Hint      := joProp.S['hint'];
                         end;
+                        oLabelprop.AlignWithMargins := True;
+                        oLabelprop.Margins.SetBounds(3,0,3,3);
                     end else if joProp.S['type'] = 'list' then begin
                         oComboBox           := TComboBox.Create(oPanel);
                         oComboBox.Parent    := oPanel;
                         oComboBox.Align     := alClient;
+                        oComboBox.Font.Color    := 0;
                         for iList := 0 to joProp.A['lists'].Count-1 do begin
                              oComboBox.Items.Add(joProp.A['lists'].S[iList]);
                         end;
@@ -436,21 +483,27 @@ begin
                             oComboBox.ShowHint  := True;
                             oComboBox.Hint      := joProp.S['hint'];
                         end;
+                        oComboBox.AlignWithMargins := True;
+                        oComboBox.Margins.SetBounds(3,0,3,0);
                     end else if joProp.S['type'] = 'memo' then begin
                         oMemo               := TMemo.Create(oPanel);
                         oMemo.Parent        := oPanel;
                         oMemo.Align         := alClient;
                         oMemo.ScrollBars    := ssBoth;
+                        oMemo.Font.Color    := 0;
                         //显示提示
                         if joProp.Contains('hint') then begin
                             oMemo.ShowHint  := True;
                             oMemo.Hint      := joProp.S['hint'];
                         end;
+                        oMemo.AlignWithMargins := True;
+                        oMemo.Margins.SetBounds(3,0,3,0);
                     end else if joProp.S['type'] = 'source' then begin
                         oMemo               := TMemo.Create(oPanel);
                         oMemo.Parent        := oPanel;
                         oMemo.Align         := alClient;
                         oMemo.ScrollBars    := ssBoth;
+                        oMemo.Font.Color    := 0;
                         //
                         bFoundSrc := True;
                         oPanel.Align   := alClient;
@@ -459,10 +512,13 @@ begin
                             oMemo.ShowHint  := True;
                             oMemo.Hint      := joProp.S['hint'];
                         end;
+                        oMemo.AlignWithMargins := True;
+                        oMemo.Margins.SetBounds(3,0,3,0);
                     end else if joProp.S['type'] = 'string' then begin
                         oEdit          := TEdit.Create(oPanel);
                         oEdit.Parent   := oPanel;
                         oEdit.Align    := alClient;
+                        oEdit.Font.Color    := 0;
                         if joProp.Contains('readonly') then begin
                             oEdit.ReadOnly  := joProp.B['readonly'];
                         end;
@@ -471,6 +527,8 @@ begin
                             oEdit.ShowHint  := True;
                             oEdit.Hint      := joProp.S['hint'];
                         end;
+                        oEdit.AlignWithMargins := True;
+                        oEdit.Margins.SetBounds(3,0,3,0);
                     end;
 
                     //

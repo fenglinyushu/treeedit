@@ -643,7 +643,7 @@ begin
         //显示属性
         bFoundSrc := False;
         for iProp := 0 to joModule.A['property'].Count-1 do begin
-            //
+            //属性json节点
             joProp    := joModule.A['property'][iProp];
             //属性的外框
             oPanel    := TPanel(APanel.Controls[iProp]);
@@ -652,7 +652,7 @@ begin
 
             //属性值
             if joProp.S['type'] = 'boolean' then begin
-                oCheck  := TCheckBox(oPanel.Controls[1]);
+                oCheck  := TCheckBox(oPanel.Controls[2]);
                 if ANode.Contains(joProp.S['_m_']) then begin
                     oCheck.Checked  := ANode.B[joProp.S['_m_']];
                 end else begin
@@ -663,7 +663,7 @@ begin
                     end;
                 end;
             end else if joProp.S['type'] = 'color' then begin
-                oLabelProp          := TLabel(oPanel.Controls[1]);
+                oLabelProp          := TLabel(oPanel.Controls[2]);
                 if ANode.Contains(joProp.S['_m_']) then begin
                     oLabelProp.Color    := teArrayToColor(ANode.A[joProp.S['_m_']]);
                 end else begin
@@ -675,29 +675,29 @@ begin
                 tM.Data             := Pointer(325); // 随便取的数
                 oLabelProp.OnClick  := TNotifyEvent(tM);
             end else if joProp.S['type'] = 'string' then begin
-                oEdit          := TEdit(oPanel.Controls[1]);
+                oEdit          := TEdit(oPanel.Controls[2]);
                 oEdit.Text     := ANode.S[joProp.S['_m_']];
             end else if joProp.S['type'] = 'memo' then begin
-                oMemo          := TMemo(oPanel.Controls[1]);
+                oMemo          := TMemo(oPanel.Controls[2]);
                 oMemo.Text     := ANode.S[joProp.S['_m_']];
             end else if joProp.S['type'] = 'integer' then begin
-                oEdit          := TEdit(oPanel.Controls[1]);
+                oEdit          := TEdit(oPanel.Controls[2]);
                 if ANode.Contains(joProp.S['_m_']) then begin
                     oEdit.Text  := IntToStr(ANode.I[joProp.S['_m_']]);
                 end else begin
                     oEdit.Text  := '';
                 end;
             end else if joProp.S['type'] = 'source' then begin
-                oMemo       := TMemo(oPanel.Controls[1]);
+                oMemo       := TMemo(oPanel.Controls[2]);
                 oMemo.Text  := ANode.S[joProp.S['_m_']];
             end else if joProp.S['type'] = 'boolean' then begin
-                oCheckBox           := TCheckBox(oPanel.Controls[1]);
+                oCheckBox           := TCheckBox(oPanel.Controls[2]);
                 oCheckBox.Checked   := ANode.B[joProp.S['_m_']];
             end else if joProp.S['type'] = 'list' then begin
-                oComboBox           := TComboBox(oPanel.Controls[1]);
+                oComboBox           := TComboBox(oPanel.Controls[2]);
                 oComboBox.ItemIndex := oComboBox.Items.IndexOf(ANode.S[joProp.S['_m_']]);  //HERE! IndexOfName not work correct!
             end else if joProp.S['type'] = 'font' then begin
-                oLabelProp  := TLabel(oPanel.Controls[1]);
+                oLabelProp  := TLabel(oPanel.Controls[2]);
                 oLabelProp.Transparent  := False;
                 teJsonToFont(oLabelProp.Font,ANode.O[joProp.S['_m_']]);
                 oLabelProp.Color    := GetMaxContrastColor(oLabelProp.font.Color);
@@ -706,13 +706,13 @@ begin
                 tM.Data             := Pointer(325); // 随便取的数
                 oLabelProp.OnClick  := TNotifyEvent(tM);
             end else if joProp.S['type'] = 'float' then begin
-                oEdit          := TEdit(oPanel.Controls[1]);
+                oEdit          := TEdit(oPanel.Controls[2]);
                 if ANode.Contains(joProp.S['_m_']) then begin
                     oEdit.Text  := FloatToStr(ANode.F[joProp.S['_m_']]);
                 end else begin
                     oEdit.Text  := '';
                 end;
-                //oFloatSE           := TFloatSpinEdit(oPanel.Controls[1]);
+                //oFloatSE           := TFloatSpinEdit(oPanel.Controls[2]);
                 //oFloatSE.Value     := ANode.F[joProp.S['_m_']];
             end;
         end;
@@ -767,17 +767,17 @@ begin
 
                //
                if sType = 'boolean' then begin
-                    oCheckBox     := TCheckBox(oPanel.Controls[1]);
+                    oCheckBox     := TCheckBox(oPanel.Controls[2]);
                     ANode.B[sName]    := oCheckBox.Checked;
                end else if sType = 'color' then begin
-                    oLabelProp  := TLabel(oPanel.Controls[1]);
+                    oLabelProp  := TLabel(oPanel.Controls[2]);
                     if oLabelProp.Color = RGB(254,254,254) then begin
                         ANode.Remove(sName);
                     end else begin
                         ANode.A[sName].FromUtf8JSON(teColorToArray(oLabelProp.Color).ToUtf8JSON(False));
                     end;
                end else if sType = 'float' then begin
-                    oEdit     := TEdit(oPanel.Controls[1]);
+                    oEdit     := TEdit(oPanel.Controls[2]);
                     if oEdit.Text = '' then begin
                         if ANode.Contains(sName) then begin
                             ANode.Remove(sName);
@@ -786,11 +786,11 @@ begin
                         ANode.F[sName]    := StrToFloatDef(oEdit.Text,0);
                     end;
                end else if sType = 'font' then begin
-                    oSpeedBtn := TSpeedButton(oPanel.Controls[1]);
+                    oSpeedBtn := TSpeedButton(oPanel.Controls[2]);
                     ANode.O[sName]    := TJsonObject.Create;
                     ANode.O[sName].FromUtf8JSON(teFontToJson(oSpeedBtn.Font).ToUtf8JSON(False));
                end else if sType = 'integer' then begin
-                    oEdit     := TEdit(oPanel.Controls[1]);
+                    oEdit     := TEdit(oPanel.Controls[2]);
                     if oEdit.Text = '' then begin
                         if ANode.Contains(sName) then begin
                             ANode.Remove(sName);
@@ -799,16 +799,16 @@ begin
                         ANode.I[sName]    := StrToIntDef(oEdit.Text,0);
                     end;
                end else if sType = 'list' then begin
-                    oComboBox := TComboBox(oPanel.Controls[1]);
+                    oComboBox := TComboBox(oPanel.Controls[2]);
                     ANode.S[sName]    := oComboBox.Text;
                end else if sType = 'memo' then begin
-                    oMemo     := TMemo(oPanel.Controls[1]);
+                    oMemo     := TMemo(oPanel.Controls[2]);
                     ANode.S[sName]    := oMemo.Text;
                end else if sType = 'source' then begin
-                    oMemo  := TMemo(oPanel.Controls[1]);
+                    oMemo  := TMemo(oPanel.Controls[2]);
                     ANode.S[sName]    := oMemo.Text;
                end else if sType = 'string' then begin
-                    oEdit     := TEdit(oPanel.Controls[1]);
+                    oEdit     := TEdit(oPanel.Controls[2]);
                     ANode.S[sName]    := oEdit.Text;
 
                end;

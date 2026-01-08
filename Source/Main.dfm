@@ -332,6 +332,12 @@ object MainForm: TMainForm
     Width = 699
     Height = 546
     Align = alClient
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clGray
+    Font.Height = -13
+    Font.Name = #24494#36719#38597#40657
+    Font.Style = []
+    ParentFont = False
     TabOrder = 3
   end
   object OpenDialog: TOpenDialog

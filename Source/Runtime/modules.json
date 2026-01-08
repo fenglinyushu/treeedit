@@ -18,13 +18,13 @@
             {
                "_m_" : "connectionstring",
                "type" : "string",
-               "width" : 800,
+               "width" : 410,
                "hint" : "数据库连接字符串"
             },
             {
                "_m_" : "prefix",
                "type" : "string",
-               "hint" : "自动生成控件的前缀, 主要用于一个窗体内多个看板. \r\n如果只有一个, 默认为空"
+               "hint" : "自动生成控件的前缀, 默认为空"
             },
             {
                "_m_" : "image",
@@ -96,17 +96,17 @@
             {
                "_m_" : "dwstyle",
                "type" : "string",
-               "width" : 800
+               "width" : 405
             },
             {
                "_m_" : "dwattr",
                "type" : "string",
-               "width" : 800
+               "width" : 405
             },
             {
                "_m_" : "align",
                "type" : "list",
-				"width":200,
+               "width" : 200,
                "lists" : [ "left", "right", "top", "bottom", "client", "none" ]
             },
             {
@@ -234,16 +234,17 @@
             {
                "_m_" : "dwstyle",
                "type" : "string",
-               "width" : 800
+               "width" : 410
             },
             {
                "_m_" : "dwattr",
                "type" : "string",
-               "width" : 800
+               "width" : 410
             },
             {
                "_m_" : "align",
-               "type" : "list","width":200,
+               "type" : "list",
+               "width" : 200,
                "lists" : [ "left", "right", "top", "bottom", "client", "none" ]
             },
             {
@@ -285,13 +286,13 @@
             {
                "_m_" : "sql",
                "type" : "string",
-               "width" : 800
+               "width" : 620
             },
             {
                "_m_" : "option",
                "type" : "memo",
                "height" : 300,
-               "width" : 800,
+               "width" : 410,
                "default" : "dwdata = [\r\n//dw__start\r\n  ['OpenAI', 'Sora'],\r\n  ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],\r\n  [320, 332, 301, 334, 390, 330, 320],\r\n  [120, 232, 201, 234, 290, 230, 280]\r\n//dw__end\r\n];\r\n\r\n\r\noption = {\r\n  tooltip: {\r\n    trigger: 'axis',\r\n    axisPointer: {\r\n      type: 'shadow'\r\n    }\r\n  },\r\n  legend: {\r\n    orient: 'horizontal', // 水平排列\r\n    align: 'auto', // 自动对齐\r\n    top: '0%', // 设置在顶部\r\n    left: 'center', // 设置水平居中\r\n    data: dwdata[0],\r\n    textStyle: {\r\n      color: '#eee'\r\n    }\r\n  },\r\n  yAxis: {\r\n    type: 'value',\r\n    boundaryGap: [0, 0.01]\r\n  },\r\n  xAxis: {\r\n    type: 'category',\r\n    data: dwdata[1]\r\n  },\r\n  series: dwdata[0].map((name, index) => ({\r\n    name: name,\r\n    type: 'bar',\r\n    data: dwdata[index + 2] // 跳过前两个元素（名称数组和Y轴数据）\r\n  }))\r\n};",
                "hint" : "当前图表的核心参数\r\n可修改//dw__start和//dw__end之间的数据更新图表\r\n也可通过SQL更新"
             }
@@ -351,12 +352,12 @@
             {
                "_m_" : "dwstyle",
                "type" : "string",
-               "width" : 800
+               "width" : 410
             },
             {
                "_m_" : "dwattr",
                "type" : "string",
-               "width" : 800
+               "width" : 410
             },
             {
                "_m_" : "align",
@@ -402,13 +403,13 @@
             {
                "_m_" : "sql",
                "type" : "string",
-               "width" : 800
+               "width" : 620
             },
             {
                "_m_" : "option",
                "type" : "memo",
                "height" : 300,
-               "width" : 800,
+               "width" : 410,
                "default" : "dwdata = [\r\n//dw__start\r\n  ['OpenAI', 'Sora'],\r\n  ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],\r\n  [320, 332, 301, 334, 390, 330, 320],\r\n  [120, 232, 201, 234, 290, 230, 280]\r\n//dw__end\r\n];\r\n\r\n\r\noption = {\r\n  tooltip: {\r\n    trigger: 'axis',\r\n    axisPointer: {\r\n      type: 'shadow'\r\n    }\r\n  },\r\n  legend: {\r\n    orient: 'horizontal', // 水平排列\r\n    align: 'auto', // 自动对齐\r\n    top: '0%', // 设置在顶部\r\n    left: 'center', // 设置水平居中\r\n    data: dwdata[0],\r\n    textStyle: {\r\n      color: '#fff'\r\n    }\r\n  },\r\n  xAxis: {\r\n    type: 'value',\r\n    boundaryGap: [0, 0.01]\r\n  },\r\n  yAxis: {\r\n    type: 'category',\r\n    data: dwdata[1]\r\n  },\r\n  series: dwdata[0].map((name, index) => ({\r\n    name: name,\r\n    type: 'bar',\r\n    data: dwdata[index + 2] // 跳过前两个元素（名称数组和Y轴数据）\r\n  }))\r\n};",
                "hint" : "当前图表的核心参数\r\n可修改//dw__start和//dw__end之间的数据更新图表\r\n也可通过SQL更新"
             }
@@ -468,16 +469,17 @@
             {
                "_m_" : "dwstyle",
                "type" : "string",
-               "width" : 800
+               "width" : 410
             },
             {
                "_m_" : "dwattr",
                "type" : "string",
-               "width" : 800
+               "width" : 410
             },
             {
                "_m_" : "align",
-               "type" : "list","width":200,
+               "type" : "list",
+               "width" : 200,
                "lists" : [ "left", "right", "top", "bottom", "client", "none" ]
             },
             {
@@ -605,16 +607,17 @@
             {
                "_m_" : "dwstyle",
                "type" : "string",
-               "width" : 800
+               "width" : 410
             },
             {
                "_m_" : "dwattr",
                "type" : "string",
-               "width" : 800
+               "width" : 410
             },
             {
                "_m_" : "align",
-               "type" : "list","width":200,
+               "type" : "list",
+               "width" : 200,
                "lists" : [ "left", "right", "top", "bottom", "client", "none" ]
             },
             {
@@ -661,7 +664,154 @@
             {
                "_m_" : "sql",
                "type" : "string",
-               "width" : 800
+               "width" : 620
+            }
+         ]
+      },
+      {
+         "_m_" : "datav_ranking",
+         "mode" : "sibling and child",
+         "allowsibling" : [ "panel" ],
+         "allowchild" : [
+            "datav_water",
+            "datetime",
+            "horzbar",
+            "image",
+            "label",
+            "map",
+            "panel",
+            "progress"
+         ],
+         "parent" : [ "none" ],
+         "property" : [
+            {
+               "_m_" : "caption",
+               "type" : "string",
+               "default" : "datav_ranking"
+            },
+            {
+               "_m_" : "type",
+               "type" : "string",
+               "default" : "datav_ranking",
+               "readonly" : true
+            },
+            {
+               "_m_" : "visible",
+               "type" : "boolean",
+               "default" : true
+            },
+            {
+               "_m_" : "name",
+               "type" : "string"
+            },
+            {
+               "_m_" : "left",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "right",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "top",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "bottom",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "width",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "height",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "dwstyle",
+               "type" : "string",
+               "width" : 410
+            },
+            {
+               "_m_" : "dwattr",
+               "type" : "string",
+               "width" : 410
+            },
+            {
+               "_m_" : "align",
+               "type" : "list",
+               "width" : 200,
+               "lists" : [ "left", "right", "top", "bottom", "client", "none" ]
+            },
+            {
+               "_m_" : "akleft",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "aktop",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "akright",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "akbottom",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "alignwithmargins",
+               "type" : "boolean"
+            },
+            {
+               "_m_" : "margins-bottom",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-left",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-right",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "margins-top",
+               "type" : "integer"
+            },
+            {
+               "_m_" : "sql",
+               "type" : "string",
+               "width" : 620
+            },
+            {
+               "_m_" : "rownum",
+               "type" : "integer",
+               "default" : "5"
+            },
+            {
+               "_m_" : "waittime",
+               "type" : "integer",
+               "default" : "3000"
+            },
+            {
+               "_m_" : "carousel",
+               "type" : "list",
+               "lists" : [ "single", "page" ]
+            },
+            {
+               "_m_" : "unit",
+               "type" : "string"
+            },
+            {
+               "_m_" : "sort",
+               "type" : "boolean",
+               "default" : "true"
+            },
+            {
+               "_m_" : "valueformatter",
+               "type" : "string"
             }
          ]
       },
@@ -726,17 +876,16 @@
             {
                "_m_" : "dwstyle",
                "type" : "string",
-               "width" : 800
+               "width" : 410
             },
             {
                "_m_" : "dwattr",
                "type" : "string",
-               "width" : 800
+               "width" : 410
             },
             {
                "_m_" : "font",
-               "type" : "font",
-               "height" : 45
+               "type" : "font"
             },
             {
                "_m_" : "align",
@@ -746,12 +895,14 @@
             },
             {
                "_m_" : "alignment",
-               "type" : "list","width":200,
+               "type" : "list",
+               "width" : 200,
                "lists" : [ "left", "center", "right" ]
             },
             {
                "_m_" : "layout",
-               "type" : "list","width":200,
+               "type" : "list",
+               "width" : 200,
                "lists" : [ "top", "center", "bottom" ]
             },
             {
@@ -793,7 +944,7 @@
             {
                "_m_" : "sql",
                "type" : "string",
-               "width" : 800
+               "width" : 620
             }
          ]
       },
@@ -855,16 +1006,17 @@
             {
                "_m_" : "dwstyle",
                "type" : "string",
-               "width" : 800
+               "width" : 410
             },
             {
                "_m_" : "dwattr",
                "type" : "string",
-               "width" : 800
+               "width" : 410
             },
             {
                "_m_" : "align",
-               "type" : "list","width":200,
+               "type" : "list",
+               "width" : 200,
                "lists" : [ "left", "right", "top", "bottom", "client", "none" ]
             },
             {
@@ -911,7 +1063,7 @@
             {
                "_m_" : "sql",
                "type" : "string",
-               "width" : 800
+               "width" : 620
             }
          ]
       },
@@ -973,26 +1125,27 @@
             {
                "_m_" : "dwstyle",
                "type" : "string",
-               "width" : 800
+               "width" : 410
             },
             {
                "_m_" : "dwattr",
                "type" : "string",
-               "width" : 800
+               "width" : 410
             },
             {
                "_m_" : "font",
-               "type" : "font",
-               "height" : 45
+               "type" : "font"
             },
             {
                "_m_" : "align",
-               "type" : "list","width":200,
+               "type" : "list",
+               "width" : 200,
                "lists" : [ "left", "right", "top", "bottom", "client", "none" ]
             },
             {
                "_m_" : "alignment",
-               "type" : "list","width":200,
+               "type" : "list",
+               "width" : 200,
                "lists" : [ "left", "center", "right" ]
             },
             {
@@ -1039,7 +1192,7 @@
             {
                "_m_" : "sql",
                "type" : "string",
-               "width" : 800
+               "width" : 620
             }
          ]
       },
@@ -1097,16 +1250,17 @@
             {
                "_m_" : "dwstyle",
                "type" : "string",
-               "width" : 800
+               "width" : 410
             },
             {
                "_m_" : "dwattr",
                "type" : "string",
-               "width" : 800
+               "width" : 410
             },
             {
                "_m_" : "align",
-               "type" : "list","width":200,
+               "type" : "list",
+               "width" : 200,
                "lists" : [ "left", "right", "top", "bottom", "client", "none" ]
             },
             {
@@ -1148,12 +1302,12 @@
             {
                "_m_" : "sql",
                "type" : "string",
-               "width" : 800
+               "width" : 620
             },
             {
                "_m_" : "option",
                "type" : "memo",
-               "width" : 800,
+               "width" : 410,
                "height" : 300,
                "default" : "dwdata = [\r\n//dw__start\r\n  ['OpenAI', 'Sora'],\r\n  ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],\r\n  [320, 332, 301, 334, 390, 330, 320],\r\n  [120, 232, 201, 234, 290, 230, 280]\r\n//dw__end\r\n];\r\noption = {\r\n  tooltip: {\r\n    trigger: 'axis'\r\n  },\r\n  legend: {\r\n    orient: 'horizontal', // 水平排列\r\n    align: 'auto', // 自动对齐\r\n    top: '0%', // 设置在顶部\r\n    left: 'center', // 设置水平居中\r\n    data: dwdata[0],\r\n    textStyle: {\r\n      color: '#fff'\r\n    }\r\n  },\r\n  grid: {\r\n    left: '3%',\r\n    right: '4%',\r\n    bottom: '3%',\r\n    containLabel: true\r\n  },\r\n  xAxis: {\r\n    type: 'category',\r\n    boundaryGap: false,\r\n    data: dwdata[1]\r\n  },\r\n  yAxis: {\r\n    splitLine: {\r\n      show: false // 隐藏水平的分隔线\r\n    },\r\n    type: 'value'\r\n  },\r\n  series: [\r\n    {\r\n      name: dwdata[0][0],\r\n      type: 'line',\r\n      data: dwdata[2]\r\n    },\r\n    {\r\n      name: dwdata[0][1],\r\n      type: 'line',\r\n      data: dwdata[3]\r\n    }\r\n  ]\r\n};\r\n"
             }
@@ -1225,12 +1379,12 @@
             {
                "_m_" : "dwstyle",
                "type" : "string",
-               "width" : 800
+               "width" : 410
             },
             {
                "_m_" : "dwattr",
                "type" : "string",
-               "width" : 800
+               "width" : 410
             },
             {
                "_m_" : "font",
@@ -1238,7 +1392,8 @@
             },
             {
                "_m_" : "align",
-               "type" : "list","width":200,
+               "type" : "list",
+               "width" : 200,
                "lists" : [ "left", "right", "top", "bottom", "client", "none" ]
             },
             {
@@ -1280,7 +1435,7 @@
             {
                "_m_" : "sql",
                "type" : "string",
-               "width" : 800
+               "width" : 620
             }
          ]
       },
@@ -1293,6 +1448,7 @@
             "bar_echarts",
             "bar_horz_echarts",
             "bmap",
+            "datav_ranking",
             "datav_water",
             "datetime",
             "horzbar",
@@ -1369,12 +1525,12 @@
             {
                "_m_" : "dwstyle",
                "type" : "string",
-               "width" : 800
+               "width" : 410
             },
             {
                "_m_" : "dwattr",
                "type" : "string",
-               "width" : 800
+               "width" : 410
             },
             {
                "_m_" : "align",
@@ -1442,13 +1598,12 @@
             },
             {
                "_m_" : "font",
-               "type" : "font",
-               "height" : 45
+               "type" : "font"
             },
             {
                "_m_" : "sql",
                "type" : "string",
-               "width" : 800
+               "width" : 620
             }
          ]
       },
@@ -1503,7 +1658,7 @@
             {
                "_m_" : "dwstyle",
                "type" : "string",
-               "width" : 800
+               "width" : 410
             },
             {
                "_m_" : "bottom",
@@ -1520,7 +1675,7 @@
             {
                "_m_" : "dwattr",
                "type" : "string",
-               "width" : 800
+               "width" : 410
             },
             {
                "_m_" : "align",
@@ -1599,7 +1754,7 @@
             {
                "_m_" : "sql",
                "type" : "string",
-               "width" : 800
+               "width" : 620
             },
             {
                "_m_" : "barcolor",
@@ -1667,16 +1822,17 @@
             {
                "_m_" : "dwstyle",
                "type" : "string",
-               "width" : 800
+               "width" : 410
             },
             {
                "_m_" : "dwattr",
                "type" : "string",
-               "width" : 800
+               "width" : 410
             },
             {
                "_m_" : "align",
-               "type" : "list","width":200,
+               "type" : "list",
+               "width" : 200,
                "lists" : [ "left", "right", "top", "bottom", "client", "none" ]
             },
             {
@@ -1718,13 +1874,13 @@
             {
                "_m_" : "sql",
                "type" : "string",
-               "width" : 800
+               "width" : 620
             },
             {
                "_m_" : "option",
                "type" : "memo",
                "height" : 300,
-               "width" : 800,
+               "width" : 410,
                "default" : "dwdata = [\r\n//dw__start\r\n  'Perfect',\r\n  20\r\n//de__end\r\n  ];\r\n  \r\ngaugeData = [\r\n  {\r\n    value: dwdata[1],\r\n    name: dwdata[0],\r\n    title: {\r\n      offsetCenter: ['0%', '-20%']\r\n    },\r\n    detail: {\r\n      valueAnimation: true,\r\n      offsetCenter: ['0%', '20%']\r\n    }\r\n  },\r\n];\r\noption = {\r\n  series: [\r\n    {\r\n      type: 'gauge',\r\n      startAngle: 90,\r\n      endAngle: -270,\r\n      pointer: {\r\n        show: false\r\n      },\r\n      progress: {\r\n        show: true,\r\n        overlap: false,\r\n        roundCap: true,\r\n        clip: false,\r\n        itemStyle: {\r\n          borderWidth: 1,\r\n          borderColor: '#464646'\r\n        }\r\n      },\r\n      axisLine: {\r\n        lineStyle: {\r\n          width: 10\r\n        }\r\n      },\r\n      splitLine: {\r\n        show: false,\r\n        distance: 0,\r\n        length: 10\r\n      },\r\n      axisTick: {\r\n        show: false\r\n      },\r\n      axisLabel: {\r\n        show: false,\r\n        distance: 50\r\n      },\r\n      data: gaugeData,\r\n      title: {\r\n        color:'#ddd',\r\n        fontSize: 14\r\n      },\r\n      detail: {\r\n        width: 50,\r\n        height: 14,\r\n        fontSize: 18,\r\n        color: 'inherit',\r\n        borderColor: 'inherit',\r\n        borderRadius: 20,\r\n        borderWidth: 0,\r\n        formatter: '{value}%'\r\n      }\r\n    }\r\n  ]\r\n};\r\n"
             }
          ]
@@ -1783,16 +1939,17 @@
             {
                "_m_" : "dwstyle",
                "type" : "string",
-               "width" : 800
+               "width" : 410
             },
             {
                "_m_" : "dwattr",
                "type" : "string",
-               "width" : 800
+               "width" : 410
             },
             {
                "_m_" : "align",
-               "type" : "list","width":200,
+               "type" : "list",
+               "width" : 200,
                "lists" : [ "left", "right", "top", "bottom", "client", "none" ]
             },
             {
@@ -1834,13 +1991,13 @@
             {
                "_m_" : "sql",
                "type" : "string",
-               "width" : 800
+               "width" : 620
             },
             {
                "_m_" : "option",
                "type" : "memo",
                "height" : 300,
-               "width" : 800,
+               "width" : 410,
                "default" : "option = {\r\n  label: {\r\n    color: '#fff',\r\n    fontSize: 12\r\n  },\r\n  series: [\r\n    {\r\n      type: 'pie',\r\n      radius: ['40%', '60%'],\r\n      center: ['50%', '50%'],\r\n      itemStyle: {\r\n        borderRadius: 5\r\n      },\r\n      data: [\r\n        { value: 40, name: '张东' },\r\n        { value: 30, name: '陈诃' },\r\n        { value: 28, name: '张西' },\r\n        { value: 20, name: '柳林桥'},\r\n        { value: 22, name: '黄桥' }\r\n      ]\r\n    }\r\n  ]\r\n};\r\n"
             }
          ]
@@ -1908,16 +2065,17 @@
             {
                "_m_" : "dwstyle",
                "type" : "string",
-               "width" : 800
+               "width" : 410
             },
             {
                "_m_" : "dwattr",
                "type" : "string",
-               "width" : 800
+               "width" : 410
             },
             {
                "_m_" : "align",
-               "type" : "list","width":200,
+               "type" : "list",
+               "width" : 200,
                "lists" : [ "left", "right", "top", "bottom", "client", "none" ]
             },
             {
@@ -1959,7 +2117,7 @@
             {
                "_m_" : "sql",
                "type" : "string",
-               "width" : 800
+               "width" : 620
             },
             {
                "_m_" : "colwidths",
